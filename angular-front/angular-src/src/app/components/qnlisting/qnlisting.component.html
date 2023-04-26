@@ -1,0 +1,36 @@
+<!-- <div class=" flex justify-end items-end w-full h-16 border-b ">
+    <button routerLink="/askqn" class="bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white p-1 border border-blue-500 hover:border-transparent rounded  mr-2 mb-2">
+        Ask question
+      </button>
+</div>
+
+<div *ngFor="let el of Qn" [routerLink]="['/singleqn',el._id]" class=" flex border-b  w-ful h-24">
+  <div class=" flex justify-center items-center  w-40 h-full">
+    <div class="h-12 w-18">
+      <p class="text-xs text-slate-400 ">12 votes</p>
+      <p class="text-xs text-slate-400 ">2 Answer </p>
+    </div>
+  </div>
+  <div class="flex-1 flex-col  ">
+    <div class=" w-full h-18 ">
+<h1 id="h1" class="text-xl text-slate-600 font-serif truncate line-clamp-1 " [innerHTML]="el.titlehtml"></h1>
+<p id="p" class="text-md text-slate-400 font-sans truncate line-clamp-2  " [innerHTML]="el.body"></p>
+    </div>
+    <div class=" flex justify-end items-end ">
+      <div class=" flex  mt-2 h-8 w-44 ">
+        <div [routerLink]="['/singleuser',el.user._id]" class="h-4 w-4">
+           <img [src]="el.user.image" alt="">
+        </div>
+        <div class="w-fit ml-4">
+  <p class="text-xs text-slate-300 ">{{el.user.username}}</p>
+        </div>
+  
+      </div>
+    </div>
+    
+  
+  </div>
+</div>
+ -->
+
+ 

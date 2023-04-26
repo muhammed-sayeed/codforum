@@ -1,0 +1,19 @@
+::-webkit-scrollbar {
+    display: none;
+  }
+  #card{
+    background-image: linear-gradient(
+      90deg,
+      #ccc 0px,
+      rgba(229, 229, 229, 0.986) 40px,
+      #ccc 80px
+    );
+    background-size: 300%;
+    background-position: 100% 0;
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer {
+    to{
+      background-position: -100% 0;
+    }
+  }

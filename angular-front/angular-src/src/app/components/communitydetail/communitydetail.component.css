@@ -1,0 +1,12 @@
+#img{
+    height: 165px;
+}
+#ptag{
+    overflow: hidden;
+}
+.overflow-hidden {
+    overflow: hidden !important;
+  }
+  #para{
+    height: 81px;
+  }
