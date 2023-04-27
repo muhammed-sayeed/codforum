@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { getQn } from 'src/app/types/questionss.interface';
 
+import Swal from 'sweetalert2';
+
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -95,15 +98,34 @@ showR(){
   this.noqnsTrue=false
 }
   qnBlocked(Id:string){
+    Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes, Block it!'
+}).then((result) => {
+  if (result.isConfirmed) {
     this.authService.blockQn(Id).subscribe((data:any)=>{
-    if(data.success){
-      this.repoModal=!this.repoModal
-   this.newQns =   this.Qns.filter((el:any)=>{
-           return el._id != Id
+      if(data.success){
+        Swal.fire(
+          'Blocked!',
+          'This question is Blocked.',
+          'success'
+        )
+        this.repoModal=!this.repoModal
+     this.newQns =   this.Qns.filter((el:any)=>{
+             return el._id != Id
+        })
+        this.Qns=this.newQns
+      }
+        
       })
-      this.Qns=this.newQns
-    }
-      
-    })
+   
+  }
+})
+   
   }
 }

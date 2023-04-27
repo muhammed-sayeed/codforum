@@ -4,22 +4,7 @@
         <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden">
                 <table class="min-w-full">
-                    <!-- <thead class="bg-white border-b">
-              <tr>
-                <th scope="col" id="thead1" class="text-sm  border font-medium text-gray-900 px-6 py-4 text-left">
-                  #
-                </th>
-                <th id="thead" scope="col" class="text-sm font-medium border text-gray-900 px-6 py-4 text-left">
-                  First
-                </th>
-                <th scope="col" class="text-sm font-medium  text-gray-900 px-6 py-4 text-left">
-                  Last
-                </th>
-                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
-                  Handle
-                </th>
-              </tr>
-            </thead> -->
+                   
                     <tbody>
                         <tr  *ngFor="let el of Qns" (click)="reportModalShow(el._id)" class="bg-gray-100 border-b">
                             <td id="thead1"
@@ -28,9 +13,7 @@
                                 class="text-sm text-gray-900 border-r-2  font-semibold px-6 py-4 whitespace-nowrap truncate ">
 
                             </td>
-                            <!-- <td *ngIf="reported" class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                  Otto
-                </td> -->
+                          
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 <p class="text-sm text-slate-500 font-semibold"> This question Recived <span
                                         class="text-base text-red-500 font-semibold">{{el.reportcount}} </span> Reports

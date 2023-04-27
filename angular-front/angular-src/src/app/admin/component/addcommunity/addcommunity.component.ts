@@ -17,7 +17,7 @@ import { tagListAction } from 'src/app/store/action/taglist';
 export class AddcommunityComponent implements OnInit{
   list!:myState[]
   addButton = false
-  listData$:Observable<myState[]>
+  listData$!:Observable<myState[]>
  usernames:string[] =[]
  tagnames:string[]=[]
  Tags:string[]=[]
@@ -28,35 +28,35 @@ export class AddcommunityComponent implements OnInit{
 
   tags!:taglist[]
  
-  tagList$:Observable<taglist[]>
+  tagList$!:Observable<taglist[]>
  
   constructor(
     private store:Store<AppStateInterface>
   ){
-  this.store.dispatch(moderatorListAction())
-  this.listData$ = this.store.pipe(select(isAllDataSelector))
-  this.listData$.subscribe({next:(data)=>{
-    console.log('data',data);
-     this.list= data
 
-     
-   
-  }})
-
-  this.store.dispatch(tagListAction())
-
-     this.tagList$ = this.store.pipe(select(isTagSelector))
- 
-     this.tagList$.subscribe({next:(data)=>{
-       this.tags = data
-      
-     }})
 
   
   }
 
   ngOnInit(): void {
-    
+    this.store.dispatch(moderatorListAction())
+    this.listData$ = this.store.pipe(select(isAllDataSelector))
+    this.listData$.subscribe({next:(data)=>{
+      console.log('data',data);
+       this.list= data
+  
+       
+     
+    }})
+  
+    this.store.dispatch(tagListAction())
+  
+       this.tagList$ = this.store.pipe(select(isTagSelector))
+   
+       this.tagList$.subscribe({next:(data)=>{
+         this.tags = data
+        
+       }})
   }
 
 add(Id:string,name:string, event:any){

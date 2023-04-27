@@ -1,5 +1,6 @@
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { Location } from '@angular/common';
+import Swal from 'sweetalert2';
 
 import {
   registerAction,
@@ -188,7 +189,17 @@ export class registerEffect {
     this.action$.pipe(
       ofType(addTagSuccessAction),
       tap(()=>{
-        this.roter.navigate(['/admin/taglist'])
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'successfully added',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(()=>{
+          this.roter.navigate(['/admin/taglist'])
+        })
+       
       })
     ),
     {dispatch:false}
@@ -230,25 +241,22 @@ export class registerEffect {
     this.action$.pipe(
       ofType(editTagSuccessAction),
       tap(()=>{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+       setTimeout(()=>{
         this.roter.navigate(['/admin/taglist'])
+       },2000)
       })
     ),
     {dispatch:false}
   )
 
-  //----------REMOVE TAG----------------
-  // removeTag$ = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(removeTagAction),
-  //     mergeMap((Result) => {
-  //       return this.authService.removeTag(Result).pipe(
-  //         map((Responce) => {
-  //           return removeTagSuccessAction({ responce: Responce });
-  //         })
-  //       );
-  //     })
-  //   )
-  // );
+  
 
   //------------MODERATOR LIST-------------------
   moderatorList$ = createEffect(() =>
@@ -286,7 +294,17 @@ export class registerEffect {
     this.action$.pipe(
       ofType(addCommunitySuccessAction),
       tap(()=>{
-        this.roter.navigate(['/admin/community'])
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'successfully added',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(() => {
+          this.roter.navigate(['/admin/community'])
+        }, 2000);
+      
       })
     ),
     {dispatch:false}
@@ -360,7 +378,17 @@ export class registerEffect {
     this.action$.pipe(
       ofType(addBadgeSuccessAction),
       tap(()=>{
-        this.roter.navigate(['/admin/badge'])
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Your work has been saved',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        setTimeout(() => {
+          this.roter.navigate(['/admin/badge'])
+        }, 2000);
+       
       })
     ),
     {dispatch:false}
@@ -402,7 +430,17 @@ redirectAfter$ = createEffect(
   this.action$.pipe(
     ofType(editBadgeSuccessAction),
     tap(()=>{
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Your work has been saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
       this.roter.navigate(['/admin/badge'])
+        
+      }, 2000);
     })
   ),
   {dispatch:false}
@@ -417,7 +455,6 @@ this.action$.pipe(
     return this.authService.userProfile().pipe(
       map((result:any)=>result.profile),
       map((Result=>{
-        console.log('lllll');
          return userProfileSuccessAction({profile:Result})
       }))
     )
@@ -446,7 +483,17 @@ redirectAfterProEdut$ = createEffect(
   this.action$.pipe(
     ofType(updateProfileSuccessAction),
     tap(()=>{
-      this.roter.navigate(['/profile'])
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Successfully updated',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(()=>{
+        this.roter.navigate(['/profile'])
+      },2000)
+      
     })
   ),
   {dispatch:false}

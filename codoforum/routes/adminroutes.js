@@ -12,6 +12,7 @@ const {
     tagList,
     editTag,
     removeTag,
+    checkName
 } = require('../controller/admincontroller/tagcontroller')
 
 const {
@@ -57,5 +58,6 @@ router.patch('/editbadge',editBadge)
 router.get('/reportqns',reportedQns)
 router.get('/getsingleqn',singleReport)
 router.put('/blockqn',blockQuestion)
+router.get('/checkname',checkName)
 
 module.exports = router

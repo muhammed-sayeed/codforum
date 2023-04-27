@@ -8,6 +8,8 @@ import { userListAction } from 'src/app/store/action/userlist.action';
 import { isAllDataSelector } from 'src/app/store/selectors';
 import { myState } from 'src/app/types/userlist.interface';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-userlist',
   templateUrl: './userlist.component.html',
@@ -34,6 +36,13 @@ export class UserlistComponent implements OnInit {
 
   userManage(access:boolean,Id:string){
  this.authService.manageUser(access,Id).subscribe((data)=>{
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Your work has been saved',
+    showConfirmButton: false,
+    timer: 1500
+  })
   this.store.dispatch(userListAction())
 
  })

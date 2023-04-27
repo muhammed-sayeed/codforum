@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,24 +13,24 @@ import { profile } from 'src/app/types/profile.interface';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
 })
-export class ProfileComponent {
-  profile$: Observable<any>;
+export class ProfileComponent implements OnInit {
+  profile$!: Observable<any>;
   pro!: profile;
   bioData!:string
   ques!:any
   answ!:any;
   Art:any
+ 
+  
 
-  noQns=false
-qnsTrue =false
-noAns=false
-ansTrue = false
-noArt =false
-artTrue=false
+ 
 
   constructor(private store: Store<AppStateInterface>,
     private authService:AuthService
     ) {
+   
+  }
+  ngOnInit(): void {
     this.store.dispatch(userProfileAction())
     this.profile$ = this.store.pipe(select(profileSelector));
     this.profile$.subscribe((data) => {
@@ -42,27 +42,7 @@ artTrue=false
       this.Art=data.comments
       this.bioData=this.pro.bio
       
-   if(this.ques.length==0){
-    this.noQns =true
-    this.qnsTrue=false
-   }else{
-    this.noQns = false
-    this.qnsTrue = true
-   }
-   if(this.answ.length==0){
-    this.noAns =true
-    this.ansTrue=false
-   }else{
-    this.noAns = false
-    this.ansTrue = true
-   }
-   if(this.Art.length==0){
-    this.noArt =true
-    this.artTrue=false
-   }else{
-    this.noArt = false
-    this.artTrue = true
-   }
+     
     });
   }
 

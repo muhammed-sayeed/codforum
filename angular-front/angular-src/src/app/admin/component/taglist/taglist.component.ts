@@ -8,6 +8,8 @@ import { tagListAction } from 'src/app/store/action/taglist';
 import { isTagSelector } from 'src/app/store/selectors';
 import { taglist } from 'src/app/types/taglist.interface';
 
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-taglist',
   templateUrl: './taglist.component.html',
@@ -36,10 +38,30 @@ export class TaglistComponent implements OnInit {
   
   }
   removeTag(Id:string){
-  //  this.store.dispatch(removeTagAction({Id}))
-   this.authService.removeTag(Id).subscribe((data)=>{
-    this.store.dispatch(tagListAction())
-   })
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.removeTag(Id).subscribe((data:any)=>{
+          if(data.success){
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )
+          }
+          this.store.dispatch(tagListAction())
+         })
+      
+      }
+    })
+  
   }
 
   imgChange(event:any,Id:string){

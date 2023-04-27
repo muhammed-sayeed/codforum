@@ -64,6 +64,10 @@ export class AuthService {
     return this.http.post('http://localhost:3000/admin/addtag',tagData)
    }
 
+   checkName(value:string){
+    return this.http.get('http://localhost:3000/admin/checkname')
+   }
+
    tagList(){
     return this.http.get('http://localhost:3000/admin/taglist')
    }

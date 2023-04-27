@@ -6,7 +6,7 @@ const badgeSchema = mongoose.Schema({
     name:{
         type:String
     },
-    description:{
+    criteria:{
         type:String
     },
     Achievers:{

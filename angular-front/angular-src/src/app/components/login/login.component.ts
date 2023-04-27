@@ -51,15 +51,7 @@ ngOnInit(): void {
       console.log(data,'dataaaaaaaaaaaa');
       
       this.err=data
-      console.log(this.err,'err');
-      if(this.err){
-        console.log("lo");
-        
-     
-      }
-      // setTimeout(() => {
-      //   this.err=null
-      // }, 2000);
+
       
   })
  
