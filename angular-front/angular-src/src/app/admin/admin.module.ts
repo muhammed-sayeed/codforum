@@ -1,27 +1,27 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminhomeComponent } from './component/adminhome/adminhome.component';
+import { AdminhomeComponent } from '../featureModule/admin/components/adminhome/adminhome.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { AdminnavComponent } from './component/adminnav/adminnav.component';
-import { AdminlayoutComponent } from './component/adminlayout/adminlayout.component';
-import { SidebarComponent } from './component/sidebar/sidebar.component';
-import { UserlistComponent } from './component/userlist/userlist.component';
-import { EdituserComponent } from './component/edituser/edituser.component';
-import { DataRsolver } from '../resolver';
-import { TaglistComponent } from './component/taglist/taglist.component';
-import { AddtagComponent } from './component/addtag/addtag.component';
-import { EdittagComponent } from './component/edittag/edittag.component';
-import { CommunityComponent } from './component/community/community.component';
-import { AddcommunityComponent } from './component/addcommunity/addcommunity.component';
-import { CommunitymembersComponent } from './component/communitymembers/communitymembers.component';
-import { AdminguardGuard } from '../guards/adminguard.guard';
-import { BadgesComponent } from './component/badges/badges.component';
-import { EditbadgeComponent } from './component/editbadge/editbadge.component';
-import { AddbadgeComponent } from './component/addbadge/addbadge.component';
-import { BadgedetailsComponent } from './component/badgedetails/badgedetails.component';
-import { ReportComponent } from './component/report/report.component';
+import { AdminnavComponent } from '../featureModule/admin/components/adminnav/adminnav.component';
+import { AdminlayoutComponent } from '../featureModule/admin/components/adminlayout/adminlayout.component';
+import { SidebarComponent } from '../featureModule/admin/components/sidebar/sidebar.component';
+import { UserlistComponent } from '../featureModule/admin/components/userlist/userlist.component';
+import { EdituserComponent } from '../featureModule/admin/components/edituser/edituser.component';
+import { DataRsolver } from '../featureModule/user/resolver/resolver';
+import { TaglistComponent } from '../featureModule/admin/components/taglist/taglist.component';
+import { AddtagComponent } from '../featureModule/admin/components/addtag/addtag.component';
+import { EdittagComponent } from '../featureModule/admin/components/edittag/edittag.component';
+import { CommunityComponent } from '../featureModule/admin/components/community/community.component';
+import { AddcommunityComponent } from '../featureModule/admin/components/addcommunity/addcommunity.component';
+import { CommunitymembersComponent } from '../featureModule/admin/components/communitymembers/communitymembers.component';
+import { AdminguardGuard } from '../shared module/guards/admin/adminguard.guard';
+import { BadgesComponent } from '../featureModule/admin/components/badges/badges.component';
+import { EditbadgeComponent } from '../featureModule/admin/components/editbadge/editbadge.component';
+import { AddbadgeComponent } from '../featureModule/admin/components/addbadge/addbadge.component';
+import { BadgedetailsComponent } from '../featureModule/admin/components/badgedetails/badgedetails.component';
+import { ReportComponent } from '../featureModule/admin/components/report/report.component';
 
 const routes: Routes = [
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
       { path: 'edituser/:id/:username/:phone/:email', component: EdituserComponent,canActivate:[AdminguardGuard] },
       { path: 'taglist', component: TaglistComponent,canActivate:[AdminguardGuard] },
       { path: 'addtag', component: AddtagComponent,canActivate:[AdminguardGuard] },
-      { path: 'edittag/:id/:name/:description/:image', component: EdittagComponent,canActivate:[AdminguardGuard] },
+      { path: 'edittag/:id/:name/:description', component: EdittagComponent,canActivate:[AdminguardGuard] },
       { path: 'community', component: CommunityComponent,canActivate:[AdminguardGuard] },
       { path: 'addcommunity', component: AddcommunityComponent,canActivate:[AdminguardGuard] },
       { path: 'cummmembers/:id', component:CommunitymembersComponent,canActivate:[AdminguardGuard]},

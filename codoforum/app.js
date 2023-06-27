@@ -7,12 +7,12 @@ const cors = require('cors')
 const multer = require('multer')
 const path = require('path')
 const socketIO = require('socket.io')
-const chatRoom = require('../codoforum/models/chat')
+const chatRoom = require('./models/chat')
 const cron = require('node-cron')
-const User = require('../codoforum/models/user')
-const Badge = require('../codoforum/models/badge')
+const User = require('./models/user')
+const Badge = require('./models/badge')
 
-mongoose.connect(config.database)
+mongoose.connect(process.env.database)
 mongoose.connection.on("connected",()=>{
     console.log('Database connected');
 })
@@ -26,7 +26,7 @@ app.use(bodyparser.urlencoded({extended:true}))
 
 //cors
 const corsOptions = {
-    origin: "http://localhost:4200",
+    origin: "https://codforum.site",
     methods: "GET, POST,PUT,DELETE,PATCH",
     allowedHeaders: "Content-Type, Authorization",
     optionsSuccessStatus: 200, 
@@ -39,7 +39,8 @@ const corsOptions = {
 const filestorage = multer.diskStorage({
   destination:(req,file,cb)=>{
     cb(null,"public/images")
-  },
+    },
+ 
 })  
 
 const fileFilter =(req,file,cb) => {
@@ -132,7 +133,6 @@ socket.on('typing', (data) => {
 
  // Set up a cron job to run the badge allocation function every day at midnight
  cron.schedule('10 * * * *',()=>{
-  console.log('crooon');
   const users = User.find();
   for(const user of users){
     for(const badge of Object.keys(badgeCriteria)){

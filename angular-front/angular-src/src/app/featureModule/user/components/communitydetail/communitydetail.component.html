@@ -1,0 +1,474 @@
+
+
+<section>
+<div class="flex-col py-4  cursor-pointer">
+  <div class=" flex w-full   rounded ">
+    <div class="w-8/12  flex-col">
+      <div *ngIf="community" class=" flex  h-4/5 ">
+        
+        <div class="ml-4 w-32 h-full  ">
+<img [src]="community.image" alt="">
+        </div>
+        <div  class="p-2 flex-1 flex-col flex h-full overflow-hidden">
+          <div >
+            <h1 class="font-sans text-3xl font-semibold text-red-600 ">{{community.name}}</h1>
+          </div>
+          <div id="para">
+            <p class="font-sans text-xl text-slate-500  break-alloverflow-auto max-w-full ">{{community.description}}</p>
+          </div>
+          
+         
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button (click)="Join(community._id)" id="join"
+          class="group rounded-2xl h-8 w-24 bg-green-500 font-semibold text-bace text-white relative overflow-hidden">
+          Join
+          <div
+            class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+          </div>
+        </button>
+      </div>
+    </div>
+    <div class="flex-1 flex px-4">
+      <div>
+        <img id="img" [src]="'/assets/community.jpg'" alt="">
+      </div>
+      <div *ngIf="isModerator" class="flex-1 flex  justify-between">
+          <div (click)="approval()" class="w-8 h-8 ">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" width="25" height="25" viewBox="0 0 64 64" id="Layer_1_1_" version="1.1" xml:space="preserve">
+
+              <g>
+              
+              <path d="M55,21V11h-4V1H5v57c0,2.757,2.243,5,5,5h44c2.757,0,5-2.243,5-5V21H55z M10,61c-1.654,0-3-1.346-3-3V3h42v55   c0,1.125,0.373,2.164,1.002,3H10z M57,58c0,1.654-1.346,3-3,3s-3-1.346-3-3V13h2v42h2V23h2V58z"/>
+              
+              <rect height="2" width="2" x="53" y="57"/>
+              
+              <path d="M39.373,47.209L36,46.246v-0.267c1.246-0.939,2-2.416,2-3.979v-1.828c0-2.646-1.982-4.907-4.513-5.148   c-1.401-0.138-2.81,0.33-3.85,1.275C28.597,37.245,28,38.594,28,40v2c0,1.563,0.754,3.04,2,3.979v0.267l-3.374,0.963   C24.491,47.82,23,49.797,23,52.018V55h20v-2.982C43,49.797,41.509,47.82,39.373,47.209z M41,53H25v-0.982   c0-1.332,0.895-2.519,2.176-2.885L32,47.754V44.87l-0.497-0.289C30.562,44.033,30,43.068,30,42v-2c0-0.844,0.358-1.653,0.982-2.221   c0.633-0.576,1.448-0.843,2.315-0.766C34.813,37.158,36,38.546,36,40.172V42c0,1.068-0.562,2.033-1.503,2.581L34,44.87v2.884   l4.823,1.379C40.105,49.499,41,50.686,41,52.018V53z"/>
+              
+              <path d="M19,59h28V31H19V59z M21,33h24v24H21V33z"/>
+              
+              <path d="M21,29c6.617,0,12-5.383,12-12S27.617,5,21,5S9,10.383,9,17S14.383,29,21,29z M21,27c-4.078,0-7.588-2.458-9.143-5.967   c1.205,0.082,2.332,0.569,3.194,1.431l0.207,0.207C16.114,23.528,17.253,24,18.465,24C20.966,24,23,21.966,23,19.465V18.5   c0-1.93-1.57-3.5-3.5-3.5c-0.827,0-1.5-0.673-1.5-1.5V12c0-1.435-0.463-2.849-1.288-4.02c1.034-0.494,2.161-0.821,3.353-0.932   C20.037,7.274,20,7.501,20,7.728c0,1.75,0.783,3.381,2.15,4.474l1.704,1.362C24.582,14.146,25,15.016,25,15.947   C25,18.733,27.267,21,30.053,21c0.036,0,0.074-0.007,0.11-0.008C28.618,24.524,25.094,27,21,27z M31,17   c0,0.661-0.068,1.307-0.191,1.933C30.555,18.973,30.302,19,30.053,19C28.369,19,27,17.631,27,15.947c0-1.542-0.69-2.98-1.896-3.945   l-1.704-1.363C22.51,9.928,22,8.866,22,7.728c0-0.222,0.022-0.445,0.066-0.669C27.08,7.593,31,11.846,31,17z M15.008,9.013   C15.647,9.87,16,10.93,16,12v1.5c0,1.93,1.57,3.5,3.5,3.5c0.827,0,1.5,0.673,1.5,1.5v0.965C21,20.862,19.862,22,18.465,22   c-0.678,0-1.314-0.264-1.793-0.742l-0.207-0.207C15.143,19.729,13.385,19,11.515,19c-0.103,0-0.21-0.014-0.318-0.03   C11.069,18.332,11,17.674,11,17C11,13.735,12.58,10.84,15.008,9.013z"/>
+              
+              <rect height="2" width="12" x="35" y="5"/>
+              
+              <rect height="2" width="2" x="35" y="9"/>
+              
+              <rect height="2" width="8" x="39" y="9"/>
+              
+              <rect height="2" width="12" x="35" y="13"/>
+              
+              <rect height="2" width="12" x="35" y="17"/>
+              
+              <rect height="2" width="8" x="35" y="21"/>
+              
+              <rect height="2" width="2" x="45" y="21"/>
+              
+              <rect height="2" width="8" x="9" y="56"/>
+              
+              <rect height="2" width="8" x="9" y="52"/>
+              
+              <rect height="2" width="8" x="9" y="48"/>
+              
+              <rect height="2" width="8" x="9" y="44"/>
+              
+              <rect height="2" width="8" x="9" y="40"/>
+              
+              </g>
+              
+              </svg>
+          </div>
+       
+      </div>
+     
+    </div>
+  </div>
+  <div class=" flex justify-startw-full h-8   rounded ">
+    <button (click)="action()"
+      class="group rounded-2xl h-6 w-20 ml-4 bg-slate-700 font-semibold text-sm text-white hover:text-black relative overflow-hidden">
+      Questions
+      <div
+        class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+      </div>
+    </button>
+    <button (click)="action2()"
+      class="group rounded-2xl ml-4 h-6 w-20 bg-slate-700 font-semibold text-sm text-white hover:text-black relative overflow-hidden">
+      Articles
+      <div
+        class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+      </div>
+    </button>
+   
+  </div>
+</div>
+
+<div class="flex border-t border-l  w-full">
+  <!-- -----------------------Questions---------------------- -->
+  <div *ngIf="show" class=" w-3/4 h-fit cursor-pointer">
+
+    <div class=" flex justify-end items-end w-full h-12 border-b ">
+      <button routerLink="/askqn"
+        class="bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white p-1 border border-blue-500 hover:border-transparent rounded  mr-2 mb-2">
+        Ask question
+      </button>
+    </div>
+    <div *ngIf="!dataLoaded" class="w-full flex justify-center pt-6">
+      <div   style="height: 400px ;" class="md:w-3/4 w-96 border animate-pulse bg-slate-200 ">
+    
+      </div>
+    </div>
+
+    <div *ngFor="let el of Qn" [routerLink]="['/singleqn',el._id]"  class="flex border-b w-full h-full overflow-hidden ">
+      <div class="w-24 h-16  p-2">
+        <p class="text-xs text-slate-400 ">{{el.upvote.length - el.downvote.length}} votes</p>
+      
+      </div>
+      <div class="flex-1  px-4">
+        <h1 id="h1" class="text-xl text-slate-600 font-serif truncate line-clamp-1 " [innerHTML]="el.titlehtml"></h1>
+        <p id="p" class="text-md text-slate-400 font-sans truncate line-clamp-2  " [innerHTML]="el.body"></p>
+      </div>
+    </div>
+  </div>
+    <!-- -------------------------Articles--------------------- -->
+    <div *ngIf="show2" class=" w-3/4 h-fit cursor-pointer ">
+
+    <div class=" flex justify-end items-end w-full h-12 border-b ">
+      <button [routerLink]="['/addarticle',community._id]"
+        class="bg-transparent hover:bg-blue-500 text-blue-700  hover:text-white p-1 border border-blue-500 hover:border-transparent rounded  mr-2 mb-2">
+        Add Article
+      </button>
+    </div>
+  
+    <div *ngFor="let el of visibleArt " [routerLink]="['/singleart',el._id]"  class="flex-col border-b w-full h-full overflow-hidden ">
+     
+      <div class="flex-1  px-4">
+        <h1 id="h1" class="text-xl text-slate-600 font-serif truncate line-clamp-1 " [innerHTML]="el.titlehtml"></h1>
+        <p id="p" class="text-md text-slate-400 font-sans truncate line-clamp-2  " [innerHTML]="el.body"></p>
+      </div>
+      <div class="w-full h-fit flex justify-end items-end ">
+        <div class=" flex w-fit h-full">
+         <div class="h-4 w-4">
+<img [src]="el.user.image" alt="">
+         </div>
+         <p class="text-sm text-red-500 ml-2">{{el.user.username}} on {{el.createdAt | date}}</p>
+        </div>
+      </div>
+    </div>
+   
+  
+   
+  </div>
+    <!-- ---------------------Article is optional--------------- -->
+    <div *ngIf="articleApproval == false" class="flex-1 flex flex-col  h-96 ">
+      <div class="h-60 flex flex-col full border">
+        <div class="w-full bg-slate-700 flex-1 border-b">
+        <h1 class="font-semibold text-white text-lg px-4 py-2">About</h1>
+        </div>
+        <div class="w-full flex-1 flex items-center ">
+          <div class=" flex justify-center items-center ml-2 w-12  h-full">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 474.565 474.565" xml:space="preserve">
+              <g>
+                <path d="M255.204,102.3c-0.606-11.321-12.176-9.395-23.465-9.395C240.078,95.126,247.967,98.216,255.204,102.3z"/>
+                <path d="M134.524,73.928c-43.825,0-63.997,55.471-28.963,83.37c11.943-31.89,35.718-54.788,66.886-63.826   C163.921,81.685,150.146,73.928,134.524,73.928z"/>
+                <path d="M43.987,148.617c1.786,5.731,4.1,11.229,6.849,16.438L36.44,179.459c-3.866,3.866-3.866,10.141,0,14.015l25.375,25.383   c1.848,1.848,4.38,2.888,7.019,2.888c2.61,0,5.125-1.04,7.005-2.888l14.38-14.404c2.158,1.142,4.55,1.842,6.785,2.827   c0-0.164-0.016-0.334-0.016-0.498c0-11.771,1.352-22.875,3.759-33.302c-17.362-11.174-28.947-30.57-28.947-52.715   c0-34.592,28.139-62.739,62.723-62.739c23.418,0,43.637,13.037,54.43,32.084c11.523-1.429,22.347-1.429,35.376,1.033   c-1.676-5.07-3.648-10.032-6.118-14.683l14.396-14.411c1.878-1.856,2.918-4.38,2.918-7.004c0-2.625-1.04-5.148-2.918-7.004   l-25.361-25.367c-1.94-1.941-4.472-2.904-7.003-2.904c-2.532,0-5.063,0.963-6.989,2.904l-14.442,14.411   c-5.217-2.764-10.699-5.078-16.444-6.825V9.9c0-5.466-4.411-9.9-9.893-9.9h-35.888c-5.451,0-9.909,4.434-9.909,9.9v20.359   c-5.73,1.747-11.213,4.061-16.446,6.825L75.839,22.689c-1.942-1.941-4.473-2.904-7.005-2.904c-2.531,0-5.077,0.963-7.003,2.896   L36.44,48.048c-1.848,1.864-2.888,4.379-2.888,7.012c0,2.632,1.04,5.148,2.888,7.004l14.396,14.403   c-2.75,5.218-5.063,10.708-6.817,16.438H23.675c-5.482,0-9.909,4.441-9.909,9.915v35.889c0,5.458,4.427,9.908,9.909,9.908H43.987z"/>
+                <path d="M354.871,340.654c15.872-8.705,26.773-25.367,26.773-44.703c0-28.217-22.967-51.168-51.184-51.168   c-9.923,0-19.118,2.966-26.975,7.873c-4.705,18.728-12.113,36.642-21.803,52.202C309.152,310.022,334.357,322.531,354.871,340.654z   "/>
+                <path d="M460.782,276.588c0-5.909-4.799-10.693-10.685-10.693H428.14c-1.896-6.189-4.411-12.121-7.393-17.75l15.544-15.544   c2.02-2.004,3.137-4.721,3.137-7.555c0-2.835-1.118-5.553-3.137-7.563l-27.363-27.371c-2.08-2.09-4.829-3.138-7.561-3.138   c-2.734,0-5.467,1.048-7.547,3.138l-15.576,15.552c-5.623-2.982-11.539-5.481-17.751-7.369v-21.958   c0-5.901-4.768-10.685-10.669-10.685H311.11c-2.594,0-4.877,1.04-6.739,2.578c3.26,11.895,5.046,24.793,5.046,38.552   c0,8.735-0.682,17.604-1.956,26.423c7.205-2.656,14.876-4.324,22.999-4.324c36.99,0,67.086,30.089,67.086,67.07   c0,23.637-12.345,44.353-30.872,56.303c13.48,14.784,24.195,32.324,31.168,51.976c1.148,0.396,2.344,0.684,3.54,0.684   c2.733,0,5.467-1.04,7.563-3.13l27.379-27.371c2.004-2.004,3.106-4.721,3.106-7.555s-1.102-5.551-3.106-7.563l-15.576-15.552   c2.982-5.621,5.497-11.555,7.393-17.75h21.957c2.826,0,5.575-1.118,7.563-3.138c2.004-1.996,3.138-4.72,3.138-7.555   L460.782,276.588z"/>
+                <path d="M376.038,413.906c-16.602-48.848-60.471-82.445-111.113-87.018c-16.958,17.958-37.954,29.351-61.731,29.351   c-23.759,0-44.771-11.392-61.713-29.351c-50.672,4.573-94.543,38.17-111.145,87.026l-9.177,27.013   c-2.625,7.773-1.368,16.338,3.416,23.007c4.783,6.671,12.486,10.631,20.685,10.631h315.853c8.215,0,15.918-3.96,20.702-10.631   c4.767-6.669,6.041-15.234,3.4-23.007L376.038,413.906z"/>
+                <path d="M120.842,206.782c0,60.589,36.883,125.603,82.352,125.603c45.487,0,82.368-65.014,82.368-125.603   C285.563,81.188,120.842,80.939,120.842,206.782z"/>
+              </g>
+              </svg>
+          </div>
+          <p class=" ml-2 text-base font-sans">{{community.admins.length}} admins</p>
+        </div>
+        <div class="w-full flex-1 flex items-center ">
+          <div class=" ml-2 w-12  flex justify-center items-center h-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="27" height="27" viewBox="0 0 100 100" xml:space="preserve">
+
+              <g>
+                <g>
+                  <path d="M57,44h-6h-6c-3.3,0-6,2.7-6,6v9c0,1.1,0.5,2.1,1.2,2.8c0.7,0.7,1.7,1.2,2.8,1.2v9c0,3.3,2.7,6,6,6h2h2    c3.3,0,6-2.7,6-6v-9c1.1,0,2.1-0.4,2.8-1.2c0.7-0.7,1.2-1.7,1.2-2.8v-9C63,46.7,60.3,44,57,44z"/>
+                </g>
+                <g>
+                  <circle cx="51" cy="33" r="7"/>
+                </g>
+                <g>
+                  <path d="M36.6,66.7c-0.2-0.2-0.5-0.4-0.7-0.6c-1.9-2-3-4.5-3-7.1v-9c0-3.2,1.3-6.2,3.4-8.3c0.6-0.6,0.1-1.7-0.7-1.7    c-1.7,0-3.6,0-3.6,0h-6c-3.3,0-6,2.7-6,6v9c0,1.1,0.5,2.1,1.2,2.8c0.7,0.7,1.7,1.2,2.8,1.2v9c0,3.3,2.7,6,6,6h2h2    c0.9,0,1.7-0.2,2.4-0.5c0.4-0.2,0.6-0.5,0.6-0.9c0-1.2,0-4,0-5.1C37,67.2,36.9,66.9,36.6,66.7z"/>
+                </g>
+                <g>
+                  <circle cx="32" cy="29" r="7"/>
+                </g>
+                <g>
+                  <path d="M76,40h-6c0,0-1.9,0-3.6,0c-0.9,0-1.3,1-0.7,1.7c2.1,2.2,3.4,5.1,3.4,8.3v9c0,2.6-1,5.1-3,7.1    c-0.2,0.2-0.4,0.4-0.7,0.6c-0.2,0.2-0.4,0.5-0.4,0.8c0,1.1,0,3.8,0,5.1c0,0.4,0.2,0.8,0.6,0.9c0.7,0.3,1.5,0.5,2.4,0.5h2h2    c3.3,0,6-2.7,6-6v-9c1.1,0,2.1-0.4,2.8-1.2c0.7-0.7,1.2-1.7,1.2-2.8v-9C82,42.7,79.3,40,76,40z"/>
+                </g>
+                <g>
+                  <circle cx="70" cy="29" r="7"/>
+                </g>
+              </g>
+              </svg>
+          </div>
+          <p class=" ml-2 text-base font-sans">{{community.users.length}} users</p>
+        </div>
+        <div class="w-full flex-1 flex items-center ">
+          <div class=" ml-2 w-12 flex justify-center items-center h-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20" height="20" viewBox="0 0 32 32" version="1.1">
+              <path d="M31.999 13.008l-0-10.574c0-1.342-1.092-2.434-2.433-2.434h-10.793c-0.677 0-1.703 0-2.372 0.67l-15.81 15.811c-0.38 0.38-0.59 0.884-0.59 1.421 0 0.538 0.209 1.043 0.589 1.423l12.088 12.085c0.379 0.381 0.883 0.59 1.421 0.59s1.042-0.209 1.421-0.589l15.811-15.812c0.678-0.677 0.674-1.65 0.67-2.591zM29.915 14.186l-15.826 15.811-12.086-12.101 15.794-15.797c0.159-0.099 0.732-0.099 0.968-0.099l0.45 0.002 10.35-0.002c0.239 0 0.433 0.195 0.433 0.434v10.582c0.002 0.38 0.004 1.017-0.084 1.169zM24 4c-2.209 0-4 1.791-4 4s1.791 4 4 4c2.209 0 4-1.791 4-4s-1.791-4-4-4zM24 10c-1.105 0-2-0.896-2-2s0.895-2 2-2 2 0.896 2 2-0.895 2-2 2z"/>
+          </svg>
+          </div>
+          <p class=" ml-2 text-base font-sans">{{tags.length}} tags</p>
+        </div>
+        <div class="w-full flex-1 flex items-center ">
+          <div class=" ml-2 w-12 flex justify-center items-center h-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20" height="20" viewBox="0 0 1920 1920">
+              <path d="M960 1242.342c62.23 0 112.941 50.71 112.941 112.94 0 62.231-50.71 112.942-112.941 112.942-62.23 0-112.941-50.71-112.941-112.941 0-62.23 50.71-112.941 112.941-112.941Zm89.336-892.01c114.862 29.704 208.264 123.106 237.968 237.967 23.378 90.466 10.729 183.304-35.464 261.46-45.515 77.138-121.186 133.947-207.586 156.084-13.779 3.614-27.783 14.795-27.783 31.962v91.595H903.529v-91.595c0-66.183 46.306-124.235 112.716-141.29 57.6-14.795 107.971-52.743 138.353-104.131 30.833-52.292 39.19-114.635 23.378-175.85-19.651-75.67-81.204-137.223-156.875-156.875-70.927-18.183-143.435-3.953-199.341 39.304-55.68 43.143-87.642 108.31-87.642 178.673H621.176c0-105.6 47.888-203.294 131.464-268.01 83.69-64.828 191.774-86.287 296.696-59.294ZM960-.01c-529.355 0-960 430.644-960 960 0 529.355 430.645 960 960 960 529.468 0 960-430.645 960-960 0-529.356-430.532-960-960-960" fill-rule="evenodd"/>
+          </svg>
+          </div>
+          <p class=" ml-2 text-base font-sans">{{Qn.length}} Questions</p>
+        </div>
+        <div class="w-full flex-1 flex items-center ">
+          <div class=" ml-2 w-12 flex justify-center items-center h-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="#000000" width="20" height="20" viewBox="0 0 24 24"><path d="M20,3a1,1,0,0,0,0-2H4A1,1,0,0,0,4,3H5.049c.146,1.836.743,5.75,3.194,8-2.585,2.511-3.111,7.734-3.216,10H4a1,1,0,0,0,0,2H20a1,1,0,0,0,0-2H18.973c-.105-2.264-.631-7.487-3.216-10,2.451-2.252,3.048-6.166,3.194-8Zm-6.42,7.126a1,1,0,0,0,.035,1.767c2.437,1.228,3.2,6.311,3.355,9.107H7.03c.151-2.8.918-7.879,3.355-9.107a1,1,0,0,0,.035-1.767C7.881,8.717,7.227,4.844,7.058,3h9.884C16.773,4.844,16.119,8.717,13.58,10.126ZM12,13s3,2.4,3,3.6V20H9V16.6C9,15.4,12,13,12,13Z"/></svg>
+          </div>
+          <p class=" ml-2 text-base font-sans">Created at  {{community.createdAt | date}}</p>
+        </div>
+
+      </div>
+       <div class=" flex-1 mt-2 border">
+        <div class="w-full bg-slate-700 flex-1 border-b">
+          <h1 class="font-semibold text-white text-lg px-4 py-2">Tags</h1>
+          </div>
+          <div class="w-full h-full flex  p-2 overflow-hidden">
+            <div *ngFor="let el of tags" [routerLink]="['/qnlist',el._id]" class="w-fit h-fit px-2 py-0.5 rounded bg-yellow-100 border hover:bg-sky-100 cursor-pointer">
+               <p>#{{el.name}}</p>
+            </div>
+          </div>
+       </div>
+    </div>
+    <div *ngIf="articleApproval" class="flex-1 flex flex-col border h-fit pb-1 cursor-pointer ">
+      <div class="border h-12 w-full bg-slate-700 ">
+        <h1 class="font-semibold text-white text-lg px-4 py-2">Article Proposel</h1>
+      </div>
+      <div (click)="articleModalShow()" *ngFor="let el of invisibleArt"  class="h-fit  flex flex-col  ">
+        <div class="h-14  flex-col border-t-2 ">
+         <div class=" h-8 w-full p-1">
+     <h1 [innerHTML]="el.titlehtml"  class="truncate w-56 font-semibold text-base "></h1>
+         </div>
+         <div class="w-full flex justify-evenly">
+   <div class=" h-fit w-fit">
+ <p class="text-sm text-red-400 font-sans"><span class="text-slate-500">Created by</span> {{el.user.username}} <span class="text-slate-500">on</span> {{el.createdAt | date}}</p>
+   </div>
+  
+         </div>
+        </div>
+         <!-------------------------Article APProval modal-------------  -->
+    <div *ngIf="articleModal" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+         
+          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+               
+           <!-- content -->
+
+           <section class="text-gray-600 body-font overflow-hidden">
+            <div class="container mx-auto">
+              <div class="flex flex-wrap -m-12">
+                <div class="p-12 md:w-full flex flex-col items-start">
+                 
+                  <h2 [innerHTML]="el.titlehtml" class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4"></h2>
+                  <p [innerHTML]="el.body" class="leading-relaxed mb-8"></p>
+                  <div class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
+                    <div (click)="articleSubmit(el._id)" class="cursor-pointer">
+                      <a class="text-indigo-500 inline-flex items-center">Approved
+                        <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 12h14"></path>
+                          <path d="M12 5l7 7-7 7"></path>
+                        </svg>
+                      </a>
+                    </div>
+                   
+                  
+                   
+                  </div>
+                  <a class="inline-flex items-center">
+                    <img alt="blog" [src]="el.user.image" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+                    <span class="flex-grow flex flex-col pl-4">
+                      <span class="title-font font-medium text-gray-900"><span class="text-xs text-red-200">Created by</span>{{el.user.username}}</span>
+                      <span class="text-gray-400 text-xs tracking-widest mt-0.5">{{el.createdAt | date}}</span>
+                    </span>
+                  </a>
+                </div>
+               
+              </div>
+            </div>
+          </section>
+
+           <!--  -->
+              
+            </div>
+            <div >
+              
+                  
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button  type="button" (click)="articleReject(el._id)" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Reject</button>
+              <button  type="button" (click)="articleModalShow()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ------------------Modal End------------------- -->
+      </div>
+      
+
+    </div>
+   
+<!-- ------------------First Modal-------------------- -->
+    <div *ngIf="Modal" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+      <!--
+        Background backdrop, show/hide based on modal state.
+    
+        Entering: "ease-out duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "ease-in duration-200"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+    
+      <div class="fixed inset-0 z-10 overflow-y-auto">
+        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <!--
+            Modal panel, show/hide based on modal state.
+    
+            Entering: "ease-out duration-300"
+              From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              To: "opacity-100 translate-y-0 sm:scale-100"
+            Leaving: "ease-in duration-200"
+              From: "opacity-100 translate-y-0 sm:scale-100"
+              To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          -->
+          <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+            <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+               
+             <div class="flex-col  w-full h-fit border ">
+              <div class="  w-full p-1">
+<p class="text-lg text-red-400 break-all">kkkkkoi</p>
+              </div>
+              <div class="flex justify-center items-end ">
+                <div class=" flex justify-evenly h-fit w-full pt-1">
+                  <div class=" w-fit h-fit">
+<p class="text-xs text-slate-400 ">12/2/2024</p>
+                  </div >
+                  <div class="flex">
+                    <div class="h-full w-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <g id="style=linear">
+                        <g id="location">
+                        <path id="vector" d="M9.17891 20.3113C9.25802 20.3888 9.33618 20.4651 9.41324 20.54C9.432 20.5582 9.4507 20.5762 9.46932 20.594M9.17891 20.3113C6.44969 17.6366 2.58692 13.4269 3.69458 8.49C5.64705 -0.169998 18.3629 -0.159997 20.3054 8.5C21.4452 13.58 17.3222 17.88 14.5769 20.54C12.6034 22.4618 11.4373 22.4798 9.46932 20.594M9.17891 20.3113L9.46932 20.594" stroke="#000000" stroke-width="1.5"/>
+                        <circle id="ellipse" cx="12" cy="9.5" r="2.5" stroke="#000000" stroke-width="1.5"/>
+                        </g>
+                        </g>
+                        </svg>
+                    </div>
+                   <p class="text-xs text-slate-400 ml-2">united kingdom</p>
+                  </div>
+              </div>
+
+              </div>
+              
+             </div>
+              
+            </div>
+            <div >
+              
+                  
+            </div>
+            <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+              <button  type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Submit</button>
+              <button  type="button" (click)="eventModal()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  <!-- --------------------Second modal---------------- -->
+  <div *ngIf="event" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <!--
+      Background backdrop, show/hide based on modal state.
+  
+      Entering: "ease-out duration-300"
+        From: "opacity-0"
+        To: "opacity-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100"
+        To: "opacity-0"
+    -->
+    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+  
+    <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+        <!--
+          Modal panel, show/hide based on modal state.
+  
+          Entering: "ease-out duration-300"
+            From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            To: "opacity-100 translate-y-0 sm:scale-100"
+          Leaving: "ease-in duration-200"
+            From: "opacity-100 translate-y-0 sm:scale-100"
+            To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        -->
+        <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+          <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+             
+           <div class="flex-col  w-full h-fit border ">
+            <div class="  w-full p-1">
+<p class="text-lg text-red-400 break-all">kkkkkoi</p>
+            </div>
+            <div class="flex justify-center items-end ">
+              <div class=" flex justify-evenly h-fit w-full pt-1">
+                <div class=" w-fit h-fit">
+<p class="text-xs text-slate-400 ">12/2/2024</p>
+                </div >
+                <div class="flex">
+                  <div class="h-full w-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <g id="style=linear">
+                      <g id="location">
+                      <path id="vector" d="M9.17891 20.3113C9.25802 20.3888 9.33618 20.4651 9.41324 20.54C9.432 20.5582 9.4507 20.5762 9.46932 20.594M9.17891 20.3113C6.44969 17.6366 2.58692 13.4269 3.69458 8.49C5.64705 -0.169998 18.3629 -0.159997 20.3054 8.5C21.4452 13.58 17.3222 17.88 14.5769 20.54C12.6034 22.4618 11.4373 22.4798 9.46932 20.594M9.17891 20.3113L9.46932 20.594" stroke="#000000" stroke-width="1.5"/>
+                      <circle id="ellipse" cx="12" cy="9.5" r="2.5" stroke="#000000" stroke-width="1.5"/>
+                      </g>
+                      </g>
+                      </svg>
+                  </div>
+                 <p class="text-xs text-slate-400 ml-2">united kingdom</p>
+                </div>
+            </div>
+
+            </div>
+            
+           </div>
+            
+          </div>
+          <div >
+            
+                
+          </div>
+          <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+            <button  type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Submit</button>
+            <button  type="button" (click)="modalEvent()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</section>

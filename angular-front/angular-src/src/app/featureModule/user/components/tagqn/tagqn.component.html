@@ -1,0 +1,53 @@
+
+<div style="background-color: #F5F5F5 ; min-height: 100vh;" class=" p-3">
+   <div class="md:w-full w-fit h-fit border-b border p-2  bg-white flex ">
+     <div class=" h-20 w-20 flex items-center justify-center">
+  
+     </div>
+     <div class="md:flex-1 w-96 flex flex-col ">
+      <div class="w-fit h-fit p-1">
+        <h1  class="text-xl text-black ml-4  font-semibold ">{{tagDetails.name}}</h1>
+      </div>
+      <div>
+   <p class="text-slate-500 font-sans ml-4 mt-4 text-base">{{tagDetails.description}}</p>
+      </div>
+     </div>
+   </div>
+   <div class="flex">
+   
+   <div style="width: 850px;" class="flex justify-center ">
+    <div style="min-height: 450px; " class="  mt-2  rounded w-fit bg-white h-fit">
+        <div *ngFor="let el of tagQn" [routerLink]="['/singleqn',el._id]" id="div1" class=" flex flex-col h-fit px-2 border-b-2 mt-4  bg-white rounded  ">
+            <div class="md:w-full w-96 h-16  border-b ">
+             <h1 id="h1" class="text-2xl text-black-600  truncate line-clamp-2 font-sans " [innerHTML]="el.titlehtml"></h1>
+            </div>
+            <div class="md:w-full w-96 h-fit py-1 overflow-hidden">
+             <p id="p" class="text-md text-slate-400 font-sans  line-clamp-2 " [innerHTML]="el.body"></p>
+            </div>
+            <div class="md:w-full w-fit h-12 flex justify-end ">
+               <div class=" h-full w-fit mr-4 flex justify-center items-center ">
+                 <img [src]="el.user.image" class="w-6 h-6 rounded-full" alt="">
+               </div>
+               <div class=" flex flex-col items-center justify-center  h-full w-fit mr-4 ">
+     <p class="text-sm text-slate-500 font-sans font-semibold">{{el.user.username}}</p>
+     <p class="text-sm text-slate-500 font-sans">{{el.createdAt | date}}</p>
+               </div>
+            </div>
+           </div>
+    </div>
+   </div>
+    <div class="flex-1 flex justify-end">
+        <div class=" w-52 mt-2 bg-sky-100 h-fit hidden md:block ml-2">
+ 
+            <div class="h-fit   w-full">
+                <p class="p-3 font-normal font-lg">A tag is a keyword or label that categorizes your question with other, similar questions. Using the right tags makes it easier for others to find and answer your question.</p>
+              </div>
+     <div class="p-3 w-full h-fit flex justify-center">
+        <button routerLink="/community" class="p-2 rounded border border-green-800 w-44 text-green-800 hover:bg-green-700 hover:text-white transition duration-700">Explor Tags</button>
+       </div>
+        </div>
+    </div>
+  
+   </div>
+ 
+</div>

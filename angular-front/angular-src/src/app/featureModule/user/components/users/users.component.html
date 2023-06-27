@@ -1,0 +1,38 @@
+<div class="w-full flex justify-center pt-6">
+    <div  *ngIf="!dataLoaded" style="height: 400px ;" class="md:w-3/4 w-96 border animate-pulse bg-slate-200 ">
+  
+    </div>
+  </div>
+
+<div *ngIf="dataLoaded" style="background-color: #F5F5F5 ; min-height: 100vh;" class=" p-3">
+    <div class=" flex  bg-white rounded    md:w-full w-96  h-fit">
+        <div>
+            <div class=" flex flex-col justify-start items-center md:w-72 w-fit">
+                <button (click)="allUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+            All
+                </button>
+                <button (click)="normalUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+                   Normal
+                       </button>
+                       <button (click)="moderators()" class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+                           Moderators
+                               </button>
+              </div>
+        </div>
+    
+       <div style="height:fit-content; row-gap: 8px;"   class="md:flex-1 w-96 grid md:grid-cols-3 grid-cols-2 ml-2  ">
+      
+           <div *ngFor="let el of usersDeatails" [routerLink]="['/singleuser',el._id]" class=" flex  mt-2 ml-3 p-3  h-fit md:w-44 w-fit border-t border-b border-gray">
+             <div class="w-fit h-fit">
+<img [src]="el.image ? el.image : '/assets/download.png'" class="w-8 h-8" alt="">
+             </div>
+             <div class="h-full flex-1 flex flex-col">
+         <h4 class="text-base font-normal text-slate-500 ml-4">{{el.username}}</h4>
+         
+             </div>
+           </div>
+         
+       </div>
+    </div>
+
+</div>
