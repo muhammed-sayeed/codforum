@@ -46,7 +46,7 @@ export class registerEffect {
       ofType(registerAction),
       mergeMap((request) => {
         return this.userService.register(request).pipe(
-          map((current) => current.userdata),
+          map((current:any) => current.userdata),
           map((currentUser: any) => {
             this.userService.storeUserData(
               currentUser.token,
@@ -79,7 +79,7 @@ export class registerEffect {
       ofType(loginAction),
       mergeMap((request) => {
         return this.userService.loginUser(request).pipe(
-          map((current) => current.response),
+          map((current:any) => current.response),
           map((User: any) => {
           console.log('uuuuser',User);
           

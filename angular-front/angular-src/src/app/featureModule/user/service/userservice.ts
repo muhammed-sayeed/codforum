@@ -3,9 +3,11 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { registerRequestInterface } from '../../../coremodule/interfaces/registerrequest.interface';
 import { Observable, map } from 'rxjs';
 import { root } from 'postcss';
+import { environment } from 'src/environments/environment';
 
 import { answer } from 'src/app/coremodule/interfaces/answer.interface';
 import { proUpdate } from 'src/app/coremodule/interfaces/updatepro.interface';
+import { loginUser } from 'src/app/coremodule/interfaces/loginUser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -15,12 +17,12 @@ export class userServices {
 
   constructor(private http: HttpClient) {}
 
-  register(data: any): Observable<any> {
-    return this.http.post('https://codforum.onrender.com/signup', data);
+  register(data:registerRequestInterface) {
+    return this.http.post(environment.apiUrl+'signup', data);
   }
 
-  loginUser(user: any): Observable<any> {
-    return this.http.post('https://codforum.onrender.com/login', user);
+  loginUser(user: loginUser) {
+    return this.http.post(environment.apiUrl+'login', user);
   }
 
   storeUserData(token: string, refresh: string) {
@@ -32,141 +34,141 @@ export class userServices {
     return !!localStorage.getItem('userToken');
   }
   getQuestions() {
-    return this.http.get('https://codforum.onrender.com/getqn');
+    return this.http.get(environment.apiUrl+'getqn');
   }
 
   singleQn(Id: string) {
-    return this.http.get('https://codforum.onrender.com/singleqn?Id=' + Id);
+    return this.http.get(environment.apiUrl+'singleqn?Id=' + Id);
   }
 
   userProfile() {
-    return this.http.get('https://codforum.onrender.com/userprofile');
+    return this.http.get(environment.apiUrl+'userprofile');
   }
 
   imgUpdate(data: any) {
-    return this.http.patch('https://codforum.onrender.com/imgupdate', data);
+    return this.http.patch(environment.apiUrl+'imgupdate', data);
   }
 
   updateProfile(data: proUpdate) {
     console.log('seviiiiiice', data);
 
-    return this.http.post('https://codforum.onrender.com/updateprofile', data);
+    return this.http.post(environment.apiUrl+'updateprofile', data);
   }
 
   users() {
-    return this.http.get('https://codforum.onrender.com/users');
+    return this.http.get(environment.apiUrl+'users');
   }
 
   singleUser(Id: any) {
-    return this.http.get('https://codforum.onrender.com/singleuser/?Id=' + Id);
+    return this.http.get(environment.apiUrl+'singleuser/?Id=' + Id);
   }
 
   searchUser(name: string) {
-    return this.http.get(
-      'https://codforum.onrender.com/searchuser?val=' + name
+    return this.http.get(environment.apiUrl+
+      'searchuser?val=' + name
     );
   }
 
   searchTags(name: string) {
-    return this.http.get(
-      'https://codforum.onrender.com/searchtags?val=' + name
+    return this.http.get(environment.apiUrl+
+      'searchtags?val=' + name
     );
   }
 
   checkQn(data: string) {
-    return this.http.get('https://codforum.onrender.com/checkqn?data=' + data);
+    return this.http.get(environment.apiUrl+'checkqn?data=' + data);
   }
 
   addQn(data: any) {
-    return this.http.post('https://codforum.onrender.com/addqn', data);
+    return this.http.post(environment.apiUrl+'addqn', data);
   }
 
   tagForQn() {
-    return this.http.get('https://codforum.onrender.com/tagqn');
+    return this.http.get(environment.apiUrl+'tagqn');
   }
 
   savaAnswer(element: answer) {
-    return this.http.post('https://codforum.onrender.com/saveans', element);
+    return this.http.post(environment.apiUrl+'saveans', element);
   }
   getAns(Id: string) {
-    return this.http.get('https://codforum.onrender.com/getanswer?Id=' + Id);
+    return this.http.get(environment.apiUrl+'getanswer?Id=' + Id);
   }
 
   qnUpVoted(Id: string) {
-    return this.http.patch('https://codforum.onrender.com/qnupvoted', { Id });
+    return this.http.patch(environment.apiUrl+'qnupvoted', { Id });
   }
   qnDownVoted(Id: string) {
-    return this.http.patch('https://codforum.onrender.com/qndownvoted', { Id });
+    return this.http.patch(environment.apiUrl+'qndownvoted', { Id });
   }
 
   ansUpVoted(Id: string) {
-    return this.http.patch('https://codforum.onrender.com/ansup', { Id });
+    return this.http.patch(environment.apiUrl+'ansup', { Id });
   }
 
   ansDownVoted(Id: string) {
-    return this.http.patch('https://codforum.onrender.com/ansdown', { Id });
+    return this.http.patch(environment.apiUrl+'ansdown', { Id });
   }
 
   addComment(data: any, Id: string) {
-    return this.http.post('https://codforum.onrender.com/addcomment', {
+    return this.http.post(environment.apiUrl+'addcomment', {
       data,
       Id,
     });
   }
 
   getComment(Id: string) {
-    return this.http.get('https://codforum.onrender.com/getcomment?Id=' + Id);
+    return this.http.get(environment.apiUrl+'getcomment?Id=' + Id);
   }
 
   addReport(reason: string, Id: string) {
-    return this.http.post('https://codforum.onrender.com/addreport', {
+    return this.http.post(environment.apiUrl+'addreport', {
       reason,
       Id,
     });
   }
 
   tagQn(Id: any) {
-    return this.http.get('https://codforum.onrender.com/gettagqn?Id=' + Id);
+    return this.http.get(environment.apiUrl+'gettagqn?Id=' + Id);
   }
 
   communityDetails(Id: any) {
-    return this.http.get(
-      'https://codforum.onrender.com/communitydetails?id=' + Id
+    return this.http.get(environment.apiUrl+
+      'communitydetails?id=' + Id
     );
   }
   tagForArticle(Id: string) {
-    return this.http.get('https://codforum.onrender.com/tagArticle?Id=' + Id);
+    return this.http.get(environment.apiUrl+'tagArticle?Id=' + Id);
   }
   addArticle(data: any) {
-    return this.http.post('https://codforum.onrender.com/addarticle', data);
+    return this.http.post(environment.apiUrl+'addarticle', data);
   }
   submitArticle(Id: string) {
-    return this.http.post('https://codforum.onrender.com/submitarticle', {
+    return this.http.post(environment.apiUrl+'submitarticle', {
       Id,
     });
   }
   rejectArticle(Id: string) {
-    return this.http.post('https://codforum.onrender.com/rejectarticle', {
+    return this.http.post(environment.apiUrl+'rejectarticle', {
       Id,
     });
   }
   addArtComment(Id: string, comment: string) {
-    return this.http.post('https://codforum.onrender.com/addartcomment', {
+    return this.http.post(environment.apiUrl+'addartcomment', {
       Id,
       comment,
     });
   }
   singleArt(Id: string) {
-    return this.http.get('https://codforum.onrender.com/singleart?Id=' + Id);
+    return this.http.get(environment.apiUrl+'singleart?Id=' + Id);
   }
   joinCommunity(Id: string) {
-    return this.http.patch('https://codforum.onrender.com/joincommunity', {
+    return this.http.patch(environment.apiUrl+'joincommunity', {
       Id,
     });
   }
 
   tagBasedQn(Id: string) {
-    return this.http.get('https://codforum.onrender.com/tagbasedqn?Id=' + Id);
+    return this.http.get(environment.apiUrl+'tagbasedqn?Id=' + Id);
   }
 
   userLogout() {

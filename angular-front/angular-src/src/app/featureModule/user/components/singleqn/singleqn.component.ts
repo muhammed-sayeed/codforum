@@ -54,6 +54,8 @@ ansUser!:any
 
   ngOnInit(): void {
     this.authService.singleQn(this.Id).subscribe((data:any)=>{
+      console.log(data);
+      
      this.Qn = data.qn
       this.user=this.Qn.user
       if(data.activity == 'upvoted'){
@@ -226,7 +228,7 @@ this.authService.qnDownVoted(id).subscribe((data:any)=>{
   }else{
     this.downvoted = true
     this.upvoted = false
-    this.voteCount = this.voteCount - 2
+    this.voteCount = this.voteCount - 1
   }
 })
   }
