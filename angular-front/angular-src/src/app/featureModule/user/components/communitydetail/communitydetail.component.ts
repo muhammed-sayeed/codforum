@@ -7,6 +7,10 @@ import { taglist } from 'src/app/coremodule/interfaces/taglist.interface';
 
 import Swal from 'sweetalert2';
 import { userServices } from '../../service/userservice';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
+import { communityDetails } from 'src/app/coremodule/interfaces/communitydetail.interface';
+import { singleCommunity } from 'src/app/coremodule/interfaces/singleCommunity.interface';
+import { qnForcommunity } from 'src/app/coremodule/interfaces/qnForcommunity.interface';
 
 @Component({
   selector: 'app-communitydetail',
@@ -14,7 +18,7 @@ import { userServices } from '../../service/userservice';
   styleUrls: ['./communitydetail.component.css'],
 })
 export class CommunitydetailComponent implements OnInit {
-  Qn: any;
+  Qn!: qnForcommunity[];
   show = true;
   show2 = false;
   articleModal = false;
@@ -24,11 +28,11 @@ export class CommunitydetailComponent implements OnInit {
   Modal = false;
   articleApproval = false;
   event = false;
-  isModerator!: any;
+  isModerator!: boolean;
   isMember!: boolean
   visibleArt: articleType[] = [];
   invisibleArt: articleType[] = [];
-  community: any;
+  community!: singleCommunity;
   tags!: taglist[];
   join = false;
 
@@ -44,7 +48,7 @@ export class CommunitydetailComponent implements OnInit {
    
   }
   ngOnInit(): void {
-    this.authService.communityDetails(this.Id).subscribe((data: any) => {
+    this.authService.communityDetails(this.Id).subscribe((data:communityDetails) => {
       this.community = data.community;
       this.tags = data.community.tags;
       this.Qn = data.questions;
@@ -68,7 +72,7 @@ export class CommunitydetailComponent implements OnInit {
    
   }
   Join(Id: string) {
-    this.authService.joinCommunity(Id).subscribe((data: any) => {
+    this.authService.joinCommunity(Id).subscribe((data: successState) => {
       console.log(data,'detaaaiils');
       if (data.success) {
         this.value = 'successfully joined'
@@ -110,7 +114,7 @@ export class CommunitydetailComponent implements OnInit {
   articleSubmit(Id: string) {
     console.log(Id);
 
-    this.authService.submitArticle(Id).subscribe((data: any) => {
+    this.authService.submitArticle(Id).subscribe((data: successState) => {
      if(data.success){
       const Toast = Swal.mixin({
         toast: true,
@@ -132,7 +136,7 @@ export class CommunitydetailComponent implements OnInit {
     });
   }
   articleReject(Id: string) {
-    this.authService.rejectArticle(Id).subscribe((data: any) => {
+    this.authService.rejectArticle(Id).subscribe((data: successState) => {
      if(data.success){
       const Toast = Swal.mixin({
         toast: true,

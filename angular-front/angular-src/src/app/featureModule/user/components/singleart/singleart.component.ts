@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Socket } from 'socket.io-client';
 import { SocketService } from 'src/app/coremodule/services/socket/socket.service';
 import { userServices } from '../../service/userservice';
+import { Art, ArtComment, singleArticle } from 'src/app/coremodule/interfaces/singleArticle.interface';
 
 @Component({
   selector: 'app-singleart',
@@ -20,8 +21,8 @@ export class SingleartComponent {
 
   Id = this.router.snapshot.paramMap.get('id') as string
   commentBox = false
-  Article:any
- comments:any
+  Article!:Art
+ comments!:ArtComment[]
   constructor(
     private router:ActivatedRoute,
     private authService:userServices,
@@ -29,8 +30,9 @@ export class SingleartComponent {
   ){
 console.log(this.Id);
 
-   authService.singleArt(this.Id).subscribe((data:any)=>{
-   
+   authService.singleArt(this.Id).subscribe((data:singleArticle)=>{
+    
+    
      this.Article=data.Art
      this.comments=data.artComments
      console.log(this.comments);

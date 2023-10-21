@@ -8,6 +8,15 @@ import { environment } from 'src/environments/environment';
 import { answer } from 'src/app/coremodule/interfaces/answer.interface';
 import { proUpdate } from 'src/app/coremodule/interfaces/updatepro.interface';
 import { loginUser } from 'src/app/coremodule/interfaces/loginUser.interface';
+import { addQn } from 'src/app/coremodule/interfaces/addQn.interface';
+import { addArticle } from 'src/app/coremodule/interfaces/addArticle.interface';
+import { communityDetails } from 'src/app/coremodule/interfaces/communitydetail.interface';
+import { singleArticle } from 'src/app/coremodule/interfaces/singleArticle.interface';
+import { singleQuestion } from 'src/app/coremodule/interfaces/singleQues.interface';
+import { singleQnComment } from 'src/app/coremodule/interfaces/singleQnComment';
+import { ansForSing } from 'src/app/coremodule/interfaces/answerForsing';
+import { individualUser } from 'src/app/coremodule/interfaces/individualUser.interface';
+import { tagBasedQn } from 'src/app/coremodule/interfaces/tagBasedQn.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -34,11 +43,11 @@ export class userServices {
     return !!localStorage.getItem('userToken');
   }
   getQuestions() {
-    return this.http.get(environment.apiUrl+'getqn');
+    return this.http.get<{questions:[]}>(environment.apiUrl+'getqn');
   }
 
   singleQn(Id: string) {
-    return this.http.get(environment.apiUrl+'singleqn?Id=' + Id);
+    return this.http.get<singleQuestion>(environment.apiUrl+'singleqn?Id=' + Id);
   }
 
   userProfile() {
@@ -56,11 +65,11 @@ export class userServices {
   }
 
   users() {
-    return this.http.get(environment.apiUrl+'users');
+    return this.http.get<{users:[]}>(environment.apiUrl+'users');
   }
 
-  singleUser(Id: any) {
-    return this.http.get(environment.apiUrl+'singleuser/?Id=' + Id);
+  singleUser(Id: string) {
+    return this.http.get<individualUser>(environment.apiUrl+'singleuser/?Id=' + Id);
   }
 
   searchUser(name: string) {
@@ -79,19 +88,21 @@ export class userServices {
     return this.http.get(environment.apiUrl+'checkqn?data=' + data);
   }
 
-  addQn(data: any) {
+  addQn(data: addQn) {
     return this.http.post(environment.apiUrl+'addqn', data);
   }
 
   tagForQn() {
-    return this.http.get(environment.apiUrl+'tagqn');
+    console.log('tagg');
+    
+    return this.http.get<{tags:[]}>(environment.apiUrl+'tagqn');
   }
 
   savaAnswer(element: answer) {
     return this.http.post(environment.apiUrl+'saveans', element);
   }
   getAns(Id: string) {
-    return this.http.get(environment.apiUrl+'getanswer?Id=' + Id);
+    return this.http.get<ansForSing[]>(environment.apiUrl+'getanswer?Id=' + Id);
   }
 
   qnUpVoted(Id: string) {
@@ -109,7 +120,7 @@ export class userServices {
     return this.http.patch(environment.apiUrl+'ansdown', { Id });
   }
 
-  addComment(data: any, Id: string) {
+  addComment(data: {comment?:string}, Id: string) {
     return this.http.post(environment.apiUrl+'addcomment', {
       data,
       Id,
@@ -117,7 +128,7 @@ export class userServices {
   }
 
   getComment(Id: string) {
-    return this.http.get(environment.apiUrl+'getcomment?Id=' + Id);
+    return this.http.get<singleQnComment>(environment.apiUrl+'getcomment?Id=' + Id);
   }
 
   addReport(reason: string, Id: string) {
@@ -127,19 +138,19 @@ export class userServices {
     });
   }
 
-  tagQn(Id: any) {
-    return this.http.get(environment.apiUrl+'gettagqn?Id=' + Id);
+  tagQn(Id: string) {
+    return this.http.get<{qnlist:[]}>(environment.apiUrl+'gettagqn?Id=' + Id);
   }
 
-  communityDetails(Id: any) {
-    return this.http.get(environment.apiUrl+
+  communityDetails(Id: string) {
+    return this.http.get<communityDetails>(environment.apiUrl+
       'communitydetails?id=' + Id
     );
   }
   tagForArticle(Id: string) {
-    return this.http.get(environment.apiUrl+'tagArticle?Id=' + Id);
+    return this.http.get<{tags:[]}>(environment.apiUrl+'tagArticle?Id=' + Id);
   }
-  addArticle(data: any) {
+  addArticle(data: addArticle) {
     return this.http.post(environment.apiUrl+'addarticle', data);
   }
   submitArticle(Id: string) {
@@ -159,7 +170,7 @@ export class userServices {
     });
   }
   singleArt(Id: string) {
-    return this.http.get(environment.apiUrl+'singleart?Id=' + Id);
+    return this.http.get<singleArticle>(environment.apiUrl+'singleart?Id=' + Id);
   }
   joinCommunity(Id: string) {
     return this.http.patch(environment.apiUrl+'joincommunity', {
@@ -168,7 +179,7 @@ export class userServices {
   }
 
   tagBasedQn(Id: string) {
-    return this.http.get(environment.apiUrl+'tagbasedqn?Id=' + Id);
+    return this.http.get<tagBasedQn>(environment.apiUrl+'tagbasedqn?Id=' + Id);
   }
 
   userLogout() {

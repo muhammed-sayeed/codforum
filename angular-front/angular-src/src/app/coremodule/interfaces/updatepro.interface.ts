@@ -1,9 +1,8 @@
 export interface proUpdate {
-    Id:string
-    username:string
-    
-    job:string
-    education:string
-    bio:string
-    place:String
+    Id:string | null
+    username:string | null
+    job:string |  null
+    education:string | null
+    bio:string | null
+    place:String | null
 }

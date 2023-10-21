@@ -25,7 +25,7 @@ export class ChatServiceService {
       this.socket.on('new message', (data) => {
         observer.next(data);
       });
-      return () => {
+      return () => {  
         this.socket.disconnect();
       };
     });

@@ -18,7 +18,7 @@ private socket!:Socket
 
   get answer():Observable<any>{
     return new Observable<any>((observer)=>{
-      this.socket.on('answer',(answer:any)=>{
+      this.socket.on('answer',(answer:string)=>{
         observer.next(answer)
       })
     })
@@ -26,7 +26,7 @@ private socket!:Socket
 
   get comment():Observable<any>{
     return new Observable<any>((observer)=>{
-      this.socket.on('comment',(newComment:any)=>{
+      this.socket.on('comment',(newComment:string)=>{
         observer.next(newComment)
       })
     })

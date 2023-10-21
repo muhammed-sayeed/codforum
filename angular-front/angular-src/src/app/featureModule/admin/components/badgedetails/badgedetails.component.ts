@@ -5,6 +5,7 @@ import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interf
 import {Observable } from 'rxjs'
 import { badgeList } from 'src/app/coremodule/interfaces/badge.interface';
 import { badgeSelector } from 'src/app/featureModule/store/selectors';
+import { tagDetail } from 'src/app/coremodule/interfaces/tagDetail.interface';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { badgeSelector } from 'src/app/featureModule/store/selectors';
 })
 export class BadgedetailsComponent implements AfterViewInit  {
   badgeList$!:Observable<badgeList[]>
-  list:any
+  list!:tagDetail
   Id =  this.router.snapshot.paramMap.get('id') as string
   
   constructor(

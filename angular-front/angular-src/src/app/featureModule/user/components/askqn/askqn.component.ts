@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import Quill from 'quill'
 import Swal from 'sweetalert2';
 import { userServices } from '../../service/userservice';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
+import { tagForQn } from 'src/app/coremodule/interfaces/tagForQn.interface';
 
 @Component({
   selector: 'app-askqn',
@@ -10,12 +12,12 @@ import { userServices } from '../../service/userservice';
   styleUrls: ['./askqn.component.css']
 })
 export class AskqnComponent implements AfterViewInit,OnInit{
- tagList:any
+ tagList!:tagForQn[]
  highligted =false
  Name!:string
  tagname:string[] = []
  qnTags :string[]= []
-   ContentHtml:any
+   ContentHtml:string = ''
   Content!:string
   visibility=false
   editorVisibility=false
@@ -27,9 +29,13 @@ export class AskqnComponent implements AfterViewInit,OnInit{
   constructor(
     private authService:userServices,
     private router:Router){
-    authService.tagForQn().subscribe((data:any)=>{
+    authService.tagForQn().subscribe((data:{tags:[]})=>{
+      
+      setTimeout(()=>{
+        console.log(data,'tagforQn');
+      },1000)
       this.tagList=data.tags
-      console.log(this.tagList);
+      console.log(this.tagList,'taglistt');
       
     })
   }
@@ -170,7 +176,7 @@ if(this.Content == ''){
         editorContent:this.editorContent,
         tags:this.qnTags
       }
-      this.authService.addQn(qns).subscribe((data:any)=>{
+      this.authService.addQn(qns).subscribe((data:successState)=>{
   console.log(data);
     if(data.success){
       const Toast = Swal.mixin({
@@ -198,12 +204,13 @@ if(this.Content == ''){
 
   }
 
-  tagSelected(Id:string,name:string,event:any){
+  tagSelected(Id:string,name:string,event:MouseEvent){
    
     this.qnTags.push(Id)
     console.log(this.qnTags);
     this.Name =name
     this.tagname.push(this.Name)
-    event.target.disabled = true
+    const target = event.target as HTMLButtonElement
+    target.disabled = true
   }
 }

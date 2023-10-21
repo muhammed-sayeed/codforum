@@ -38,6 +38,7 @@ import { updateProfileAction, updateProfileSuccessAction } from './actions/updat
 import { getQuestionsAction, getQuestionsSuccessAction, singleUserAction, singleUserSuccessAction, usersAction, usersSuccessAction } from './actions/useractions';
 import { userServices } from 'src/app/featureModule/user/service/userservice';
 import { adminService } from 'src/app/featureModule/admin/services/adminservice';
+import { proUpdate } from 'src/app/coremodule/interfaces/updatepro.interface';
 
 @Injectable()
 export class registerEffect {
@@ -171,19 +172,6 @@ export class registerEffect {
     { dispatch: false }
   );
 
-  //---------ADD TAG---------------
-  // addTag$ = createEffect(() =>
-  //   this.action$.pipe(
-  //     ofType(addTagAction),
-  //     mergeMap((requst) => {
-  //       return this.authService.addTag(requst.value).pipe(
-  //         map((Result) => {
-  //           return addTagSuccessAction({ success: true });
-  //         })
-  //       );
-  //     })
-  //   )
-  // )
 
   redirectAfterAdd$ = createEffect(
     ()=>
@@ -274,21 +262,6 @@ export class registerEffect {
     )
   )
 
-  //---------------ADD COMMUNITY-----------------------
-  // addCommunity$ = createEffect(()=>
-  // this.action$.pipe(
-  //   ofType(addCommunityAction),
-  //   mergeMap((Request)=>{
-  //     return this.authService.addCommunity(Request.value).pipe(
-  //       map((Result)=>{
-  //         console.log(Result);
-          
-  //         return addCommunitySuccessAction({success:true})
-  //       })
-  //     )
-  //   })
-  // )
-  // )
 
   redirectAfterAddCommunity$ = createEffect(
     ()=>
@@ -467,7 +440,7 @@ this.action$.pipe(
 editProfile$ = createEffect(()=>
 this.action$.pipe(
   ofType(updateProfileAction),
-  mergeMap((data:any)=>{
+  mergeMap((data:proUpdate)=>{
     return this.userService.updateProfile(data).pipe(
       map((Result)=>{
         console.log(Result);
@@ -500,52 +473,9 @@ redirectAfterProEdut$ = createEffect(
   {dispatch:false}
 )
 
-//-------------------USERS----------------
-// usersDetails$ = createEffect(()=>
-// this.action$.pipe(
-//   ofType(usersAction),
-//   mergeMap(()=>{
-//     return this.authService.users().pipe(
-//       map((Result:any)=>Result.users),
-//       map((result)=>{
-//         console.log(result)
-//         return usersSuccessAction({users:result})
-//       })
-//     )
-//   })
-// )
-// )
 
-//----------------SINGLE USER-------------------------
-// singleUser$ = createEffect(()=>
-// this.action$.pipe(
-//   ofType(singleUserAction),
-//   mergeMap((Request)=>{
-//     return this.authService.singleUser(Request).pipe(
-//       map((result:any)=>result.profile),
-//       map((Result)=>{
-//         return singleUserSuccessAction({single:Result})
-//       })
-//     )
-//   })
-// )
-// )
 
-//---------------GET QN----------------------------
-qnList$ = createEffect(()=>
-this.action$.pipe(
-  ofType(getQuestionsAction),
-  mergeMap(()=>{
-    return this.userService.getQuestions().pipe(
-      map((result:any)=> result.questions),
-      map((Result)=>{
-        console.log(Result);
-        
-        return getQuestionsSuccessAction({questions:Result})
-      })
-    )
-  })
-))
+
   constructor(
     private action$: Actions,
     private adminService:adminService,

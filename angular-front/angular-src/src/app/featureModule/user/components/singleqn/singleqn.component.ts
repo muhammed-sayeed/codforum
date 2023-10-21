@@ -7,6 +7,11 @@ import { comments } from 'src/app/coremodule/interfaces/comments.interface';
 
 import Swal from 'sweetalert2';
 import { userServices } from '../../service/userservice';
+import { singQn, singUser, singleQuestion } from 'src/app/coremodule/interfaces/singleQues.interface';
+import { singComment, singleQnComment } from 'src/app/coremodule/interfaces/singleQnComment';
+import { commentsForsing } from 'src/app/coremodule/interfaces/singleQnComm';
+import { ansForSing } from 'src/app/coremodule/interfaces/answerForsing';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
 
 @Component({
   selector: 'app-singleqn',
@@ -19,8 +24,8 @@ export class SingleqnComponent implements AfterViewInit,OnInit {
       comment : new FormControl(null)
     }
   )
-  newComment!:any
- Comments!:comments[]
+  newComment?:{comment?:string}
+ Comments!:singComment[]
  Modal= false
   upvoted=false
   downvoted=false
@@ -29,17 +34,16 @@ export class SingleqnComponent implements AfterViewInit,OnInit {
   ansUp = false
   ansDown = false
   ansCount!:number
-ansUser!:any
   editor!:any
   Id = this.router.snapshot.paramMap.get('id') as string
- Qn!:any
- user!:any
+ Qn!:singQn
+ user!:singUser
 
  dataLoaded = false
  
  favoriteReason!: string;
  voteCount!:number
- ANS:any
+ ANS!:ansForSing[]
  editorContent:any
   constructor(
     private router:ActivatedRoute,
@@ -53,9 +57,8 @@ ansUser!:any
   seasons: string[] = ['Rude or vulgar', 'Harassment or hate speech', 'Spam or copyright issue', 'Inappropriate listings message/category','other'];
 
   ngOnInit(): void {
-    this.authService.singleQn(this.Id).subscribe((data:any)=>{
-      console.log(data);
-      
+    this.authService.singleQn(this.Id).subscribe((data:singleQuestion)=>{
+     
      this.Qn = data.qn
       this.user=this.Qn.user
       if(data.activity == 'upvoted'){
@@ -66,7 +69,7 @@ ansUser!:any
 
     this.voteCount = (this.Qn.upvote.length)-(this.Qn.downvote.length)
      
-    this.authService.getComment(this.Id).subscribe((data:any)=>{
+    this.authService.getComment(this.Id).subscribe((data:singleQnComment)=>{
       console.log(data);
       this.Comments = data.comments
       this.dataLoaded = true
@@ -92,7 +95,7 @@ ansUser!:any
   @ViewChild('editor') editorRef!:ElementRef
   
   fetchAnswers(){
-    this.authService.getAns(this.Id).subscribe((data:any)=>{
+    this.authService.getAns(this.Id).subscribe((data:ansForSing[])=>{
       console.log('answers',data);
       
       this.ANS = data
@@ -179,7 +182,7 @@ ansUser!:any
         answer: this.editorContent,
         qnId : this.Id
        }
-       this.authService.savaAnswer(element).subscribe((data:any)=>{
+       this.authService.savaAnswer(element).subscribe((data:successState)=>{
           if(data.success){
             const Toast = Swal.mixin({
               toast: true,
@@ -206,7 +209,7 @@ ansUser!:any
  
   }
   qnUpVoted(id:string){
-   this.authService.qnUpVoted(id).subscribe((data:any)=>{
+   this.authService.qnUpVoted(id).subscribe((data:successState)=>{
     console.log(data);
     if(data.success == false){
       this.upvoted = false
@@ -220,7 +223,7 @@ ansUser!:any
    })
   }
   qnDownVoted(id:string){
-this.authService.qnDownVoted(id).subscribe((data:any)=>{
+this.authService.qnDownVoted(id).subscribe((data:successState)=>{
   if(data.success){
     console.log(data);
     this.downvoted = false
@@ -255,9 +258,9 @@ this.authService.qnDownVoted(id).subscribe((data:any)=>{
   addComment(Id:string){
    
     
-    this.newComment = this.commentControl.value
-    console.log(this.newComment,'aaaasss');
-    if(this.newComment.comment == null){
+    this.newComment = (this.commentControl.value as {comment?:string})
+   
+    if(this.newComment?.comment == null){
       const Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -291,7 +294,7 @@ this.authService.qnDownVoted(id).subscribe((data:any)=>{
         icon: 'warning',
         title: 'please wait'
       })
-      this.authService.addComment(this.newComment,Id).subscribe((data:any)=>{
+      this.authService.addComment(this.newComment,Id).subscribe((data:successState)=>{
         if(data.success){
             this.commentBox = false
             const Toast = Swal.mixin({
@@ -362,7 +365,7 @@ this.authService.qnDownVoted(id).subscribe((data:any)=>{
       icon: 'warning',
       title: 'please wait'
     })
-    this.authService.addReport(this.favoriteReason,Id).subscribe((data:any)=>{
+    this.authService.addReport(this.favoriteReason,Id).subscribe((data:successState)=>{
      if(data.success){
       const Toast = Swal.mixin({
         toast: true,

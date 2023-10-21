@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 import { adminService } from '../../services/adminservice';
+import { addCommunity } from 'src/app/coremodule/interfaces/addCommunity.interface';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
 
 @Component({
   selector: 'app-addcommunity',
@@ -28,7 +30,8 @@ export class AddcommunityComponent implements OnInit{
   members:string[] = []
   name!:string
   description!:string
-  DATA:any = new FormData()
+  data! : addCommunity
+ 
 
   tags!:taglist[]
  
@@ -65,30 +68,38 @@ export class AddcommunityComponent implements OnInit{
        }})
   }
 
-add(Id:string,name:string, event:any){
+add(Id:string,name:string, event:MouseEvent){
 
     this.members.push(Id)
     this.usernames.push(name)
-    event.target.disabled = true
+    const target = event.target as HTMLButtonElement
+    target.disabled = true
+    // event.target.disabled = true
      }
 
-     addTag(Id:string,name:string, event:any){
+     addTag(Id:string,name:string, event:MouseEvent){
       this.Tags.push(Id)
       this.tagnames.push(name)
-      event.target.disabled = true
+      const target = event.target as HTMLButtonElement
+      target.disabled = true
+      // event.target.disabled = true
      }
 
-setImg(event:any){
-  const image = event.target.files[0]
-  this.DATA.append('img',event.target.files[0])
-}
+
 
 addCommunity(){
-  this.DATA.append('name',this.name)
-  this.DATA.append('description',this.description)
-  this.DATA.append('tags',JSON.stringify(this.Tags))
-  this.DATA.append('members',JSON.stringify(this.members))
-  this.adminService.addCommunity(this.DATA).subscribe((data:any)=>{
+  // this.DATA.append('name',this.name)
+  // this.DATA.append('description',this.description)
+  // this.DATA.append('tags',JSON.stringify(this.Tags))
+  // this.DATA.append('members',JSON.stringify(this.members))
+  this.data = {
+    name : this.name,
+    description:this.description,
+    tags:this.Tags,
+    members:this.members
+  }
+
+  this.adminService.addCommunity(this.data).subscribe((data:successState)=>{
     if(data.success){
    
         Swal.fire({

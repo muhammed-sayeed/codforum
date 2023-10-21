@@ -5,6 +5,7 @@ import { taglist } from 'src/app/coremodule/interfaces/taglist.interface';
 
 import Swal from 'sweetalert2';
 import { userServices } from '../../service/userservice';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
 
 @Component({
   selector: 'app-addarticle',
@@ -17,7 +18,7 @@ articleTags:string[]=[]
 editor!:any
 editorContent:any
 editorVisibility = false
-ContentHtml:any
+ContentHtml!:string
 Content!:string
 tagList:taglist[] =[]
 tagVisibility=false
@@ -30,7 +31,7 @@ constructor(
   private router:ActivatedRoute,
   private Router:Router
 ){
-    authService.tagForArticle(this.Id).subscribe((data:any)=>{
+    authService.tagForArticle(this.Id).subscribe((data:{tags:[]})=>{
       console.log('data',data);
       this.tagList= data.tags
     })
@@ -128,7 +129,7 @@ submit(){
   }
  
  }
- addTags(Id:string,name:string,event:any){
+ addTags(Id:string,name:string){
  
     let idFound = false
     for(let i=0;i<this.articleTags.length;i++){
@@ -191,7 +192,7 @@ submit(){
     tags:this.articleTags,
     communityId:this.Id
   }
-  this.authService.addArticle(articleData).subscribe((data:any)=>{
+  this.authService.addArticle(articleData).subscribe((data:successState)=>{
     console.log(data);
      if(data.success){
       const Toast = Swal.mixin({

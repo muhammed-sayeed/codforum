@@ -3,8 +3,8 @@ export interface articleType{
     title:string
     titlehtml:string
     body:string
-    tags:any
-    user:any
+    tags:string[]
+    user:string[]
     state:string
     community:string
     createdAt:Date

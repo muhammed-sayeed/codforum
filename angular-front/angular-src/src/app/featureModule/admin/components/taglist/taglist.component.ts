@@ -9,6 +9,7 @@ import { taglist } from 'src/app/coremodule/interfaces/taglist.interface';
 
 import Swal from 'sweetalert2';
 import { adminService } from '../../services/adminservice';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
 
 @Component({
   selector: 'app-taglist',
@@ -49,7 +50,7 @@ export class TaglistComponent implements OnInit {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.authService.removeTag(Id).subscribe((data:any)=>{
+        this.authService.removeTag(Id).subscribe((data:successState)=>{
           if(data.success){
             Swal.fire(
               'Deleted!',
@@ -65,16 +66,6 @@ export class TaglistComponent implements OnInit {
   
   }
 
-  imgChange(event:any,Id:string){
-    console.log(Id,'iiiiiii');
-    
-    const image = event.target.files[0]
-    this.data.append('img',image)
-    this.data.append('id',Id)
-    this.authService.updateImg(this.data).subscribe((data)=>{
-      this.store.dispatch(tagListAction())
-    })
-  }
-
+ 
 
 }

@@ -3,6 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { userServices } from '../../service/userservice';
+import { TagDetails, TagQn, TagUser, tagBasedQn } from 'src/app/coremodule/interfaces/tagBasedQn.interface';
 
 @Component({
   selector: 'app-tagqn',
@@ -13,8 +14,8 @@ export class TagqnComponent implements OnInit {
 
   searchControl : FormControl = new FormControl()
   id= this.router.snapshot.paramMap.get('id') as string
-  tagDetails:any
-  tagQn:any
+  tagDetails!:TagDetails
+  tagQn!:TagQn[]
   constructor(
     private router:ActivatedRoute,
     private authService:userServices
@@ -22,7 +23,7 @@ export class TagqnComponent implements OnInit {
 
   }
 ngOnInit(): void {
-  this.authService.tagBasedQn(this.id).subscribe((data:any)=>{
+  this.authService.tagBasedQn(this.id).subscribe((data:tagBasedQn)=>{
     console.log(data);
 this.tagDetails = data.tagDetails
 this.tagQn= data.tagQn

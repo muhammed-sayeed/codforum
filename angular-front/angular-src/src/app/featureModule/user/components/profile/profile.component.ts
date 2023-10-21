@@ -10,6 +10,10 @@ import { profile } from 'src/app/coremodule/interfaces/profile.interface';
 
 import Swal from 'sweetalert2';
 import { userServices } from '../../service/userservice';
+import { profileInterface } from 'src/app/coremodule/interfaces/profileinterface';
+import { qnForcommunity } from 'src/app/coremodule/interfaces/qnForcommunity.interface';
+import { ansInterface } from 'src/app/coremodule/interfaces/ansInterface';
+import { commentForPro } from 'src/app/coremodule/interfaces/commentForprofile.interface';
 
 @Component({
   selector: 'app-profile',
@@ -17,12 +21,12 @@ import { userServices } from '../../service/userservice';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  profile$!: Observable<any>;
-  pro!: profile;
+  profile$!: Observable<profile |null | undefined>;
+  pro!: profile | null |undefined;
   bioData!:string
-  ques!:any
-  answ!:any;
-  Art:any
+  ques!:qnForcommunity[]
+  answ!:ansInterface[];
+  Art!:commentForPro[]
 
   showAns = false
   showQn = false
@@ -45,10 +49,10 @@ export class ProfileComponent implements OnInit {
       console.log('profile',data);
       
       this.pro = data;
-      this.ques=data.questions
-      this.answ=data.answers
-      this.Art=data.comments
-      this.bioData=this.pro.bio
+      this.ques=data!.questions
+      this.answ=data!.answers
+      this.Art=data!.comments
+      this.bioData=this.pro!.bio
       
       this.dataLoaded  = true
 
@@ -64,16 +68,22 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  updateImg(event:any,Id:string){
-    const data = new FormData()
-    const image = event.target.files[0]
-    data.append('img',image)
-    data.append('id',Id)
-    this.authService.imgUpdate(data).subscribe((data)=>{
-      this.store.dispatch(userProfileAction())
+  updateImg(event:Event,Id:string){
+    if(event.target){
+
+      const data = new FormData()
+      let imageInput = event.target as HTMLInputElement;
+      if (imageInput && imageInput.files && imageInput.files.length > 0) {
+        const image = imageInput.files[0]
+        data.append('img',image)
+        data.append('id',Id)
+        this.authService.imgUpdate(data).subscribe((data)=>{
+          this.store.dispatch(userProfileAction())
+        }
+        )
+      }
     }
   
-    )
   }
   logout(){Swal.fire({
     title: 'Are you sure?',

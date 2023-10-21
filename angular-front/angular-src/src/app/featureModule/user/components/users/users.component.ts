@@ -5,6 +5,7 @@ import { debounceTime, switchMap } from 'rxjs';
 import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interface';
 import { usersAction } from 'src/app/featureModule/store/actions/useractions';
 import { userServices } from '../../service/userservice';
+import { userFilter } from 'src/app/coremodule/interfaces/userFilter.interface';
 
 
 @Component({
@@ -13,8 +14,8 @@ import { userServices } from '../../service/userservice';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  usersDeatails: any;
-  details:any
+  usersDeatails!:{};
+  details!:userFilter[]
   badgeCount!:number
   searchControl : FormControl = new FormControl()
   result = []
@@ -25,7 +26,7 @@ export class UsersComponent implements OnInit {
     private store: Store<AppStateInterface>,
     private authService: userServices
   ) {
-    this.authService.users().subscribe((data: any) => {
+    this.authService.users().subscribe((data:{users:[]}) => {
       this.usersDeatails = data.users;
       this.details = data.users
       this.dataLoaded= true
@@ -34,29 +35,29 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     // this.store.dispatch(usersAction())
 
-    this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val =>{
-      return this.authService.searchUser(val)
-    }))).subscribe((data:any)=>{
-      const users = data.userdetails
-      this.usersDeatails = users
-    })
+    // this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val =>{
+    //   return this.authService.searchUser(val)
+    // }))).subscribe((data:)=>{
+    //   const users = data.userdetails
+    //   this.usersDeatails = users
+    // })
   }
 
   allUsers(){
-    this.authService.users().subscribe((data: any) => {
+    this.authService.users().subscribe((data:{users:[]}) => {
       this.usersDeatails = data.users;
       this.details = data.users
     });
   }
   normalUsers(){
-  const users = this.details.filter((X:any)=>{
+  const users = this.details.filter((X:userFilter)=>{
    return X.category == 'user'
   })
   this.usersDeatails = users
   }
 
   moderators(){
- const moderators = this.details.filter((X:any)=>{
+ const moderators = this.details.filter((X:userFilter)=>{
   return X.category == 'moderator'
  })
  this.usersDeatails = moderators

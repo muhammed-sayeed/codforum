@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit{
   email!:string
   password!:string
   err!:string| null
-  error$!:Observable<any>
+  error$!:Observable<string | null>
 
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';

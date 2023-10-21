@@ -4,6 +4,14 @@ import { getQn } from 'src/app/coremodule/interfaces/questionss.interface';
 
 import Swal from 'sweetalert2';
 import { adminService } from '../../services/adminservice';
+import { reportQns } from 'src/app/coremodule/interfaces/reportQns.interface';
+import { reportData } from 'src/app/coremodule/interfaces/reportData.interface';
+import { report } from 'src/app/coremodule/interfaces/report.interface';
+import { reportedQnAns } from 'src/app/coremodule/interfaces/reportedQnAns.interface';
+import { reportedQnCmnts } from 'src/app/coremodule/interfaces/reportedQnCommnts.interface';
+import { reportedQn } from 'src/app/coremodule/interfaces/reportedQn.interface';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
+import { reportQnss } from 'src/app/coremodule/interfaces/reportQnAdminside.interface';
 
 
 @Component({
@@ -12,8 +20,8 @@ import { adminService } from '../../services/adminservice';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
- Qns!:any
- newQns!:any
+ Qns!:reportQns[]
+ newQns!:reportQns[]
  repoModal=false
  reported =false
  qnsTrue=false
@@ -22,10 +30,10 @@ export class ReportComponent implements OnInit {
  ansTrue=false
  repTrue=false
  overview=true
- singleQn:any
- answers:any
- reports:any
- comments:any
+ singleQn!:reportedQn
+ answers!:reportedQnAns[]
+ reports!:report[]
+ comments!:reportedQnCmnts[]
   constructor(
     private authService:adminService,
     private router:Router
@@ -33,23 +41,25 @@ export class ReportComponent implements OnInit {
     
   }
   ngOnInit(): void {
-    this.authService.reportQns().subscribe((data:any)=>{
-      console.log(data);
+    this.authService.reportQns().subscribe((data:{questions:reportQns[]})=>{
+      console.log(data,'reportQns')
       
-       this.Qns=data.questions
-       
-     })
+          this.Qns=data.questions
+           })
   }
 
   reportModalShow(Id:string){
+    
     this.repoModal=!this.repoModal
-    this.authService.singleReport(Id).subscribe((data:any)=>{
+    this.authService.singleReport(Id).subscribe((data:reportData)=>{
+  console.log(data,'singleReport')
+  
      
-      
      this.singleQn=data.question
       this.answers=data.answers
       this.reports=data.reports
       this.comments=data.comments
+    
     })
 }
 cancelModalShow(){
@@ -108,7 +118,7 @@ showR(){
   confirmButtonText: 'Yes, Block it!'
 }).then((result) => {
   if (result.isConfirmed) {
-    this.authService.blockQn(Id).subscribe((data:any)=>{
+    this.authService.blockQn(Id).subscribe((data:successState)=>{
       if(data.success){
         Swal.fire(
           'Blocked!',
@@ -116,7 +126,7 @@ showR(){
           'success'
         )
         this.repoModal=!this.repoModal
-     this.newQns =   this.Qns.filter((el:any)=>{
+     this.newQns =   this.Qns.filter((el:reportQns)=>{
              return el._id != Id
         })
         this.Qns=this.newQns

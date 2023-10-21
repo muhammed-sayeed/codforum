@@ -1,15 +1,17 @@
-import { Component,OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component,OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getQuestionsAction } from 'src/app/featureModule/store/actions/useractions';
 import { userServices } from '../../service/userservice';
+import { singleQninterface } from 'src/app/coremodule/interfaces/singleQn.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent implements OnInit {
-  Qn!: any;
+  Qn!: singleQninterface[];
   voteCount!:number
   dataLoaded=false
   constructor(private store: Store, private userService: userServices) {
@@ -18,7 +20,7 @@ export class HomeComponent implements OnInit {
   }
  ngOnInit(): void {
 
-  this.userService.getQuestions().subscribe((data: any) => {
+  this.userService.getQuestions().subscribe((data: {questions:[]}) => {
     this.Qn = data.questions;
     this.dataLoaded=true
     console.log('questions',this.Qn);
@@ -26,4 +28,5 @@ export class HomeComponent implements OnInit {
   });
  
  }
+ 
 }

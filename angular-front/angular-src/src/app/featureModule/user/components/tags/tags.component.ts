@@ -13,10 +13,11 @@ import { userServices } from '../../service/userservice';
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.css']
 })
-export class TagsComponent implements OnInit {
+export class TagsComponent  {
   tags!:taglist[]
   listData$:Observable<taglist[]>
   searchControl : FormControl = new FormControl()
+  value!:string
 
   dataLoaded = false
   constructor(
@@ -32,13 +33,15 @@ export class TagsComponent implements OnInit {
     }})
   }
 
-  ngOnInit(): void {
-    this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val=>{
-      return this.authService.searchTags(val)
-    }))).subscribe((data:any)=>{
-      const tags = data.tagdetails
-      this.tags = tags
-    })
+  // ngOnInit(): void {
+  //   this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val=>{
+  //     return this.authService.searchTags(val)
+  //   }))).subscribe((data:)=>{
+  //     const tags = data.tagdetails
+  //     this.tags = tags
+  //   })
+  // }
+  tagSearch(event:string){
+     this.value = event
   }
-
 }

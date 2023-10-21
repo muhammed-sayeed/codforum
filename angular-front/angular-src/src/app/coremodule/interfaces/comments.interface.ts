@@ -1,6 +1,9 @@
 export interface comments {
-    body:string
-    user:any
-    question:string
-    createdAt:Date
+    _id: string
+    body: string
+    question: string
+    user: []
+    createdAt: string
+    updatedAt: string
+    __v: number
 }

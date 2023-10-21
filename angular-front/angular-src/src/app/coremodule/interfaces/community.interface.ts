@@ -6,5 +6,5 @@ export interface communityList {
     users:[]
     tags:[]
     image:string
-    members:any[]
+    members:string[]
 }

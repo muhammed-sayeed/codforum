@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 import Swal from 'sweetalert2';
 import { adminService } from '../../services/adminservice';
+import { successState } from 'src/app/coremodule/interfaces/success.interface';
 
 @Component({
   selector: 'app-addtag',
@@ -16,7 +17,7 @@ export class AddtagComponent {
 
   name!:string
   description!:string
- DATA:any = new FormData
+
 
   constructor(
 private store:Store,
@@ -25,11 +26,7 @@ private router:Router
   ){}
 
 
-  // setImg(event:any){
-  //   const image = event.target.files[0]
-  //  this.DATA.append('img',event.target.files[0])
-    
-  // }
+ 
 
  addTag(){
 //  this.DATA.append('name',this.name)
@@ -41,7 +38,7 @@ const value ={
 
  
 //  this.store.dispatch(addTagAction({value:this.DATA}))
-this.authService.addTag(value).subscribe((data:any)=>{
+this.authService.addTag(value).subscribe((data:successState)=>{
   if(data.success){
     Swal.fire({
       position: 'top-end',
@@ -56,9 +53,5 @@ this.authService.addTag(value).subscribe((data:any)=>{
 })
  }  
  
-//  nameExists(control: NgForm){
-//     this.authService.checkName(control.value).subscribe((data:any)=>{
-//      return data.success
-//     })
-// }
+
 }

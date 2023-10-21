@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { isDataSelector } from 'src/app/featureModule/store/selectors';
 import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interface';
 import { userServices } from '../../service/userservice';
+import { individualUser, singProfile, singlAnswer, singlComment, singlQuestion } from 'src/app/coremodule/interfaces/individualUser.interface';
+import { currentUser } from 'src/app/coremodule/interfaces/currentUser.interface';
 
 @Component({
   selector: 'app-singleuser',
@@ -16,10 +18,10 @@ import { userServices } from '../../service/userservice';
 export class SingleuserComponent implements OnInit{ 
 
 Id = this.router.snapshot.paramMap.get('id') as string
-details:any
-Qns:any
-Ans:any
-Art:any
+details!:singProfile
+Qns!:singlQuestion[]
+Ans!:singlAnswer[]
+Art!:singlComment[]
 bio=false
 edu =false
 work=false
@@ -28,9 +30,8 @@ chatModal = false
 
 messageArray: Array<{user: String, message: String}> = [];
 public isTyping = false;
-message!:any
 chatroom!:string
- currentUser:any 
+ currentUser!:currentUser | null 
  userEmail!:string
  mail!:string
 
@@ -44,7 +45,7 @@ constructor( private router:ActivatedRoute,
              private chatService:ChatServiceService
   ){
    
- authService.singleUser(this.Id).subscribe((data:any)=>{
+ authService.singleUser(this.Id).subscribe((data:individualUser)=>{
     this.details = data.profile
    console.log('details',this.details);
    this.Qns=this.details.questions
@@ -66,12 +67,14 @@ constructor( private router:ActivatedRoute,
 
 
   ngOnInit(): void {
-    let userData$:Observable<any>
+    let userData$:Observable<currentUser | null>;
     userData$ = this.store.pipe(select(isDataSelector)) 
     userData$.subscribe(data=>{
-      this.currentUser = data
-     console.log('CURRENTUSER',this.currentUser);
-     this.userEmail = this.currentUser.email
+      if(data){
+        this.currentUser = data
+       console.log('CURRENTUSER',this.currentUser);
+       this.userEmail = data.email
+   }
     })
   }
  

@@ -38,6 +38,9 @@ import { SingleartComponent } from './featureModule/user/components/singleart/si
 // import { CoreModule } from './core.module';
 import { ErrorpageComponent } from './featureModule/error/errorpage/errorpage.component';
 import { Reducer } from './featureModule/store/reducer';
+import { errorInterceptor } from './coremodule/interceptor/error.interceptor';
+import { TagsearchComponent } from './featureModule/user/components/tagsearch/tagsearch.component';
+import { searchTagsPipe } from './shared module/pipes/tagSearch.pipe';
 
 
 
@@ -93,6 +96,8 @@ const appRoutes : Routes = [
     CommunitydetailComponent,
     AddarticleComponent,
     SingleartComponent,
+    TagsearchComponent,
+    searchTagsPipe
    
   ],
   imports: [
@@ -113,7 +118,10 @@ const appRoutes : Routes = [
     EffectsModule.forFeature([registerEffect]),
     // CoreModule
   ],
-  providers: [],
+  providers: [
+    {provide:HTTP_INTERCEPTORS,useClass:ForumInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS,useClass:errorInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent],
   
 })

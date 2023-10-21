@@ -55,7 +55,6 @@ details:any
     this.chatService.getChatRoomsChat(this.chatroom).subscribe((messages:any) => {
       if(messages.data){
         this.messageArray = messages.data
-        console.log('1111',this.messageArray);
         this.scrollToBottom()
        
         
@@ -68,7 +67,6 @@ details:any
     })
       this.chatService.newMessageReceived().subscribe(data => {
         this.messageArray = [...this.messageArray,data]
-        console.log('2222',this.messageArray);
         this.isTyping = false;
         this.scrollToBottom();
       });

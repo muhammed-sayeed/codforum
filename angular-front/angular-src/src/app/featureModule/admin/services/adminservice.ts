@@ -6,6 +6,14 @@ import { badge } from 'src/app/coremodule/interfaces/addbadge.interceptor';
 import { editTag } from 'src/app/coremodule/interfaces/edittag.interface';
 import { edituser } from 'src/app/coremodule/interfaces/edituser.interface';
 import { environment } from 'src/environments/environment';
+import { addTag } from 'src/app/coremodule/interfaces/addTag.interface';
+import { addCommunity } from 'src/app/coremodule/interfaces/addCommunity.interface';
+import { removeMember } from 'src/app/coremodule/interfaces/removeMember.interface';
+import { editBadge } from 'src/app/coremodule/interfaces/editBadge.interface';
+import { id } from 'src/app/coremodule/interfaces/id.interface';
+import { reportQns } from 'src/app/coremodule/interfaces/reportQns.interface';
+import { reportData } from 'src/app/coremodule/interfaces/reportData.interface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +21,8 @@ import { environment } from 'src/environments/environment';
 export class adminService {
   adminToken!: string | null;
   constructor(private http: HttpClient) {}
-  tokenGenerator(refreshToken: any) {
+
+  tokenGenerator(refreshToken: string) {
     return this.http.post(environment.apiUrl+'token', refreshToken);
   }
 
@@ -40,7 +49,7 @@ export class adminService {
     return this.http.post(environment.adminApiUrl+'edituser', user);
   }
 
-  addTag(Data: any) {
+  addTag(Data:addTag ) {
     return this.http.post(environment.adminApiUrl+'addtag', Data);
   }
 
@@ -59,9 +68,9 @@ export class adminService {
     );
   }
 
-  updateImg(data: any) {
-    return this.http.put(environment.adminApiUrl+'updateimg', data);
-  }
+  // updateImg(data) {
+  //   return this.http.put(environment.adminApiUrl+'updateimg', data);
+  // }
 
   removeTag(Id: string) {
     return this.http.delete(
@@ -73,7 +82,7 @@ export class adminService {
     return this.http.get(environment.adminApiUrl+'moderatorlist');
   }
 
-  addCommunity(communityData: any) {
+  addCommunity(communityData: addCommunity) {
     return this.http.post(
       environment.adminApiUrl+'addcommunity',
       communityData
@@ -84,14 +93,14 @@ export class adminService {
     return this.http.get(environment.adminApiUrl+'communitylist');
   }
 
-  removeCommunity(Id: any) {
+  removeCommunity(Id:id) {
     return this.http.post(
       environment.adminApiUrl+'removecommunity',
       Id
     );
   }
 
-  removeMember(data: any) {
+  removeMember(data: removeMember) {
     return this.http.post(
       environment.adminApiUrl+'removemember',
       data
@@ -106,21 +115,21 @@ export class adminService {
     return this.http.get(environment.adminApiUrl+'badgelist');
   }
 
-  badgeDetail(Id: any) {
-    return this.http.get(environment.adminApiUrl+'badgedetail', Id);
+  badgeDetail(Id: string) {
+    return this.http.get(environment.adminApiUrl+'badgedetail?Id='+ Id);
   }
 
-  editBadge(data: any) {
+  editBadge(data: editBadge) {
     return this.http.patch(
       environment.adminApiUrl+'editbadge',
       data
     );
   }
   reportQns() {
-    return this.http.get(environment.adminApiUrl+'reportqns');
+    return this.http.get<{questions:reportQns[]}>(environment.adminApiUrl+'reportqns');
   }
   singleReport(Id: string) {
-    return this.http.get(
+    return this.http.get<reportData>(
       environment.adminApiUrl+'getsingleqn?Id=' + Id
     );
   }

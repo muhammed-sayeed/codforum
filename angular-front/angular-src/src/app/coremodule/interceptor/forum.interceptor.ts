@@ -3,9 +3,10 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 @Injectable()
 export class ForumInterceptor implements HttpInterceptor {
@@ -30,6 +31,8 @@ export class ForumInterceptor implements HttpInterceptor {
         }
       })
     }
-    return next.handle(request);
+    return next.handle(request).pipe(tap((event:ErrorEvent<>)=>{
+      if(event.)
+    }))
   }
 }

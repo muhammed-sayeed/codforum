@@ -7,6 +7,9 @@ import { communityListAction } from 'src/app/featureModule/store/actions/communi
 import { removeMemberAction } from 'src/app/featureModule/store/actions/removemember';
 import { communitySelector } from 'src/app/featureModule/store/selectors';
 import { communityList } from 'src/app/coremodule/interfaces/community.interface';
+import { tagDetail } from 'src/app/coremodule/interfaces/tagDetail.interface';
+import { memberDeatail } from 'src/app/coremodule/interfaces/memberDetail.interface';
+import { listInterface } from 'src/app/coremodule/interfaces/list.interface';
 
 @Component({
   selector: 'app-communitymembers',
@@ -15,7 +18,7 @@ import { communityList } from 'src/app/coremodule/interfaces/community.interface
 })
 export class CommunitymembersComponent implements AfterViewInit{
   communityList$!:Observable<communityList[]>
-  list:any ;
+  list!:communityList ;
   
   id = this.Router.snapshot.paramMap.get('id');
   

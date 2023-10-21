@@ -11,4 +11,5 @@ export interface profile {
     answers:[]
     badge:[]
     image:string
+    comments:[]
 }
