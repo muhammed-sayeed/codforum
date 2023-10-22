@@ -66,7 +66,7 @@ const {
 router.get('/',homeView)
 router.post('/signup',signup)
 router.post('/login',login)
-router.post('/token',token)
+router.post('/updatetoken',token)
 router.get('/userprofile',tokenCheck,userProfile)
 router.patch('/imgupdate',tokenCheck,imgUpdate)
 router.post('/updateprofile',tokenCheck,updateProfile)

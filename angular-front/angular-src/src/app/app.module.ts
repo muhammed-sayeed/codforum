@@ -120,7 +120,7 @@ const appRoutes : Routes = [
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:ForumInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:errorInterceptor,multi:true}
+    // {provide:HTTP_INTERCEPTORS,useClass:errorInterceptor,multi:true}
   ],
   bootstrap: [AppComponent],
   

@@ -59,8 +59,6 @@ export class userServices {
   }
 
   updateProfile(data: proUpdate) {
-    console.log('seviiiiiice', data);
-
     return this.http.post(environment.apiUrl+'updateprofile', data);
   }
 
