@@ -17,6 +17,8 @@ import { singleQnComment } from 'src/app/coremodule/interfaces/singleQnComment';
 import { ansForSing } from 'src/app/coremodule/interfaces/answerForsing';
 import { individualUser } from 'src/app/coremodule/interfaces/individualUser.interface';
 import { tagBasedQn } from 'src/app/coremodule/interfaces/tagBasedQn.interface';
+import { tags } from 'src/app/coremodule/interfaces/tags.interface';
+import { communities } from 'src/app/coremodule/interfaces/communities.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -48,6 +50,14 @@ export class userServices {
 
   singleQn(Id: string) {
     return this.http.get<singleQuestion>(environment.apiUrl+'singleqn?Id=' + Id);
+  }
+
+  tagList(){
+    return this.http.get<tags>(environment.apiUrl+'taglist')
+  }
+
+  communityList(){
+    return this.http.get<communities>(environment.apiUrl+'communitylist')
   }
 
   userProfile() {

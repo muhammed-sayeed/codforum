@@ -7,40 +7,30 @@ import { tagListAction } from 'src/app/featureModule/store/actions/taglist';
 import { isTagSelector } from 'src/app/featureModule/store/selectors';
 import { taglist } from 'src/app/coremodule/interfaces/taglist.interface';
 import { userServices } from '../../service/userservice';
+import { tags } from 'src/app/coremodule/interfaces/tags.interface';
 
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.css']
 })
-export class TagsComponent  {
+export class TagsComponent implements OnInit  {
   tags!:taglist[]
-  listData$:Observable<taglist[]>
   searchControl : FormControl = new FormControl()
   value!:string
 
   dataLoaded = false
   constructor(
- private STORE:Store<AppStateInterface>,
- private authService:userServices
+ private userService:userServices
  ){
-  this.STORE.dispatch(tagListAction())
-  this.listData$ = this.STORE.pipe(select(isTagSelector))
-
-    this.listData$.subscribe({next:(data)=>{
-      this.tags = data
-     this.dataLoaded = true
-    }})
   }
 
-  // ngOnInit(): void {
-  //   this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val=>{
-  //     return this.authService.searchTags(val)
-  //   }))).subscribe((data:)=>{
-  //     const tags = data.tagdetails
-  //     this.tags = tags
-  //   })
-  // }
+  ngOnInit(): void {
+    this.userService.tagList().subscribe((data:tags)=>{
+     this.tags = data.tags
+     this.dataLoaded = true
+    })
+  }
   tagSearch(event:string){
      this.value = event
   }
