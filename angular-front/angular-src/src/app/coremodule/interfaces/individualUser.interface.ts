@@ -42,6 +42,9 @@ export interface individualUser {
     report?: []
   }
   
+  export interface tag{
+    name:string
+  }
   export interface singlAnswer {
     _id: string
     body: string

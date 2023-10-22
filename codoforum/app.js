@@ -26,7 +26,7 @@ app.use(bodyparser.urlencoded({extended:true}))
 
 //cors
 const corsOptions = {
-    origin: "https://codforum.site",
+    origin: ["https://codforum.site", "http://localhost:4200"],
     methods: "GET, POST,PUT,DELETE,PATCH",
     allowedHeaders: "Content-Type, Authorization",
     optionsSuccessStatus: 200, 

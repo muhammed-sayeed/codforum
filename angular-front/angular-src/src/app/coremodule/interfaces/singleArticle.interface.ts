@@ -8,13 +8,17 @@ export interface singleArticle {
     title: string
     titlehtml: string
     body: string
-    tags: []
+    tags: tag[]
     user: User
     state: string
     community: string
     createdAt: string
     updatedAt: string
     __v: number
+  }
+
+  interface tag{
+    name:string
   }
   
   export interface User {

@@ -31,8 +31,6 @@ export class ForumInterceptor implements HttpInterceptor {
         }
       })
     }
-    return next.handle(request).pipe(tap((event:ErrorEvent<>)=>{
-      if(event.)
-    }))
+    return next.handle(request)
   }
 }

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 import { isDataSelector } from 'src/app/featureModule/store/selectors';
 import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interface';
 import { userServices } from '../../service/userservice';
-import { individualUser, singProfile, singlAnswer, singlComment, singlQuestion } from 'src/app/coremodule/interfaces/individualUser.interface';
+import { individualUser, singProfile, singlAnswer, singlComment, singlQuestion, tag } from 'src/app/coremodule/interfaces/individualUser.interface';
 import { currentUser } from 'src/app/coremodule/interfaces/currentUser.interface';
 
 @Component({
@@ -22,6 +22,7 @@ details!:singProfile
 Qns!:singlQuestion[]
 Ans!:singlAnswer[]
 Art!:singlComment[]
+tags!:tag
 bio=false
 edu =false
 work=false

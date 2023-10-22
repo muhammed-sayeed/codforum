@@ -10,6 +10,11 @@ export interface reportedQn{
     titlehtml:string
     updatedAt:string
     upvote:[]
-    user:{}
+    user:user
     _id:string
+}
+
+interface user{
+    image:string
+    username:string
 }

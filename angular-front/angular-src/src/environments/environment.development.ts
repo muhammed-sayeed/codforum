@@ -1,4 +1,5 @@
 export const environment = {
-    apiUrl : 'https://localhost:3000/',
-    adminApiUrl:'https://localhost:3000/admin/'
+    production:true,
+    apiUrl : 'http://localhost:3000/',
+    adminApiUrl:'http://localhost:3000/admin/'
 };

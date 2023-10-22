@@ -8,7 +8,7 @@ export const registerAction = createAction(
 
 export const registerSuccessAction = createAction(
     ActionType.REGISTER_SUCCESS,
-    props<{data:{username:string; email:string; phone:number; password:string,token:string,refreshtoken:string}}>()
+    props<{data:{Id:string;username:string; email:string; phone:number; password:string,token:string,refreshtoken:string}}>()
 )
 
 export const registerFailureAction = createAction(ActionType.REGISTER_FAILURE,

@@ -4,9 +4,14 @@ export interface articleType{
     titlehtml:string
     body:string
     tags:string[]
-    user:string[]
+    user:user
     state:string
     community:string
     createdAt:Date
     updatedAt:Date
+}
+
+interface user{
+    username:string
+    image:string
 }

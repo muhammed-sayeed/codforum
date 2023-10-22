@@ -4,7 +4,7 @@ export interface ansForSing {
     upvote: []
     downvote: []
     createdAt: string
-    liked: string
+    liked: boolean
     user: User
   }
   

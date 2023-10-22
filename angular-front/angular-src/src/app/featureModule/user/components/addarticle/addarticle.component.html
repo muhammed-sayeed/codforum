@@ -357,7 +357,7 @@
                     </form>
 
                     <div class=" flex flex-wrap w-72 h-full">
-                        <div *ngFor="let el of tagList" (click)="addTags(el._id,el.name,$event)"
+                        <div *ngFor="let el of tagList" (click)="addTags(el._id,el.name)"
                             class="h-fit p-1 w: fit-content border hover:bg-sky-200 active:bg-sky-200 cursor-pointer rounded ml-2">
                             <p>{{el.name}}</p>
                         </div>

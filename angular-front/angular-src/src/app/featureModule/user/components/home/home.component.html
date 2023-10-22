@@ -2,43 +2,30 @@
 
 <div style="background-color: #F5F5F5; min-height: 100vh; " class="h-fit">
   <div class="flex md:w-full">
-    <div style="width: 100%;" class=" h-fit   flex flex-col justify-center items-center  rounded ">
-      <!-- loader -->
-      <div id="loadDiv" *ngIf="!dataLoaded" class="flex flex-col   mt-4">
-     <div class="animate-pulse h-20   w-full rounded bg-slate-200">
-     
-     </div>
-     <div class="animate-pulse h-40  rounded w-full bg-white">
 
-     </div>
-     <div class="animate-pulse h-20 mt-4  w-full rounded bg-slate-200">
-     
-     </div>
-     <div class="animate-pulse h-40  rounded w-full bg-white">
-
-     </div>
-      </div>
-      <!--  -->
+   <div class="flex flex-col items-center justify-center w-3/4">
+    <div style="width: 100%;" class=" overflow-y-auto h-fit  flex flex-col justify-start items-center  rounded ">
       <div *ngFor="let el of Qn" [routerLink]="['/singleqn',el._id]" id="div1" class=" flex flex-col border cursor-pointer mt-4 p-2 bg-white rounded ">
-       <div    class="md:w-full w-fit h-16 p-2 border-b ">
-        <h1 id="h1" class="text-2xl text-black-600  truncate line-clamp-2 font-sans " [innerHTML]="el.titlehtml"></h1>
+        <div    class="md:w-full w-fit h-16 p-2 border-b ">
+         <h1 id="h1" class="text-2xl text-black-600  truncate line-clamp-2 font-sans " [innerHTML]="el.titlehtml"></h1>
+        </div>
+        <div class="md:w-full w-fit h-20 overflow-hidden p-2">
+         <p id="p" class="text-md text-slate-400 font-sans  line-clamp-2 " [innerHTML]="el.body"></p>
+        </div>
+        <div class="md:w-full w-fit h-12 flex justify-end ">
+           <div class=" h-full w-fit mr-4 flex justify-center items-center ">
+             <img [src]="el.user.image ? el.user.image : '/assets/download.png' " class="w-6 h-6 rounded-full" alt="">
+           </div>
+           <div class=" flex flex-col items-center justify-center  h-full w-fit mr-4 ">
+ <p class="text-sm text-slate-500 font-sans font-semibold">{{el.user.username}}</p>
+ <p class="text-sm text-slate-500 font-sans">{{el.createdAt | date}}</p>
+           </div>
+        </div>
        </div>
-       <div class="md:w-full w-fit h-20 overflow-hidden p-2">
-        <p id="p" class="text-md text-slate-400 font-sans  line-clamp-2 " [innerHTML]="el.body"></p>
-       </div>
-       <div class="md:w-full w-fit h-12 flex justify-end ">
-          <div class=" h-full w-fit mr-4 flex justify-center items-center ">
-            <img [src]="el.user.image ? el.user.image : '/assets/download.png' " class="w-6 h-6 rounded-full" alt="">
-          </div>
-          <div class=" flex flex-col items-center justify-center  h-full w-fit mr-4 ">
-<p class="text-sm text-slate-500 font-sans font-semibold">{{el.user.username}}</p>
-<p class="text-sm text-slate-500 font-sans">{{el.createdAt | date}}</p>
-          </div>
-       </div>
-      </div>
-
     </div>
-    <div class="flex flex-col">
+   </div>
+     <!--==============================-->
+    <div class="flex flex-col fixed right-0">
       <div class="w-60  hidden md:block">
         <div class="flex flex-col h-fit mt-4 bg-white w-52 border  rounded hidden md:block">
           <div class="flex justify-center items-center h-20  w-full">

@@ -14,7 +14,7 @@ import { userFilter } from 'src/app/coremodule/interfaces/userFilter.interface';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  usersDeatails!:{};
+  usersDeatails!:userFilter[];
   details!:userFilter[]
   badgeCount!:number
   searchControl : FormControl = new FormControl()
