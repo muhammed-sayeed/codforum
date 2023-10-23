@@ -7,7 +7,7 @@
 <p>{{err}}</p>
 <span class="notification_progress"></span>
   </div>
-  <div routerLink=" " class="p-4 px-6 cursor-pointer">
+  <div routerLink="/" class="p-4 px-6 cursor-pointer">
     <h1 id="logo" class="font-4xl font-bold  text-black" >COD<span class="text-red-600">FORUM</span></h1>
     
       </div>
@@ -39,7 +39,7 @@
             <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="grid-password">Password</label><input type="password" [(ngModel)]="password" name="password" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Password">
           </div>
           <div>
-            <p class="block text-blueGray-600 text-xs font-bold mb-2 cursor-pointer" >Creat an Account <a  class="text-red-600 ml-4">Signup</a></p>
+            <p class="block text-blueGray-600 text-xs font-bold mb-2 cursor-pointer" >Creat an Account <a routerLink="/register"  class="text-red-600 ml-4">Signup</a></p>
           </div>
           <div class="text-center mt-6">
             <button class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="submit"> Sign In </button>
