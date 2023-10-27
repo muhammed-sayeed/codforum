@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { io,Socket} from 'socket.io-client'
+import  io from 'socket.io-client'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
-private socket!:Socket
+private socket!:any
   constructor() { }
   connect():void{
  this.socket=io('https://codforum.onrender.com')
- this.socket.on("error", (error) => {
+ this.socket.on("error", (error:any) => {
   console.log("Socket connection error: " + error.message);
 });
 
@@ -34,7 +34,7 @@ private socket!:Socket
 
   get artComment():Observable<any>{
     return new Observable<any>((observer)=>{
-      this.socket.on('comment',(newArtComment)=>{
+      this.socket.on('comment',(newArtComment:string)=>{
         observer.next(newArtComment)
       })
     })

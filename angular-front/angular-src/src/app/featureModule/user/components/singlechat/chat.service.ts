@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {io} from 'socket.io-client';
+import io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,7 +22,7 @@ export class ChatServiceService {
 
   newMessageReceived() {
     const observable = new Observable<{ user: String, message: String,messageTime:Date}>(observer => {
-      this.socket.on('new message', (data) => {
+      this.socket.on('new message', (data:any) => {
         observer.next(data);
       });
       return () => {  
@@ -38,7 +38,7 @@ export class ChatServiceService {
 
   receivedTyping() {
     const observable = new Observable<{ isTyping: boolean}>(observer => {
-      this.socket.on('typing', (data) => {
+      this.socket.on('typing', (data:any) => {
         observer.next(data);
       });
       return () => {

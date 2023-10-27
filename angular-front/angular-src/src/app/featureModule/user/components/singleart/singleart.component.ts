@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Socket } from 'socket.io-client';
 import { SocketService } from 'src/app/coremodule/services/socket/socket.service';
 import { userServices } from '../../service/userservice';
 import { Art, ArtComment, singleArticle } from 'src/app/coremodule/interfaces/singleArticle.interface';

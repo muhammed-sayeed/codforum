@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { isDataSelector } from 'src/app/featureModule/store/selectors';
 import { Store, select } from '@ngrx/store';
 import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interface';
-import * as moment from 'moment';
+import moment from 'moment';
 import { userServices } from '../../service/userservice';
 
 @Component({
