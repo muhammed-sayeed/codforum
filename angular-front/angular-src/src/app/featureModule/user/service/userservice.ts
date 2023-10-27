@@ -101,8 +101,6 @@ export class userServices {
   }
 
   tagForQn() {
-    console.log('tagg');
-    
     return this.http.get<{tags:[]}>(environment.apiUrl+'tagqn');
   }
 
