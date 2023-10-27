@@ -116,31 +116,6 @@ export class AskqnComponent implements AfterViewInit,OnInit{
     })
   }
 
-  next(){
-    this.ContentHtml = this.Header.root.innerHTML
-  if(this.ContentHtml.length < 15){
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-    
-    Toast.fire({
-      icon: 'warning',
-      title: 'Complete title section'
-    })
-  }else{
-    this.editorVisibility=true
-  }
-  
-    }
-
   submit(){
     this.editorContent = this.editor.root.innerHTML
     this.ContentHtml = this.Header.root.innerHTML
