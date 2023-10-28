@@ -19,6 +19,7 @@ export class AskqnComponent implements AfterViewInit,OnInit{
  tagname:string[] = []
  qnTags :string[]= []
    ContentHtml:string = ''
+   searchdata!:string
   // Content!:string
   value!:string
   visibility=false
