@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component,OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { getQuestionsAction } from 'src/app/featureModule/store/actions/useractions';
+import { Component,OnInit } from '@angular/core';
 import { userServices } from '../../service/userservice';
 import { singleQninterface } from 'src/app/coremodule/interfaces/singleQn.interface';
+import { loadingService } from 'src/app/coremodule/services/Loader/loading.service';
 
 @Component({
   selector: 'app-home',
@@ -12,19 +11,20 @@ import { singleQninterface } from 'src/app/coremodule/interfaces/singleQn.interf
 export class HomeComponent implements OnInit {
   Qn: singleQninterface[] = []
   voteCount!:number
-  dataLoaded=false
-  constructor(private store: Store, private userService: userServices) {
-    // this.store.dispatch(getQuestionsAction())
-   
-  }
+  constructor(
+     private userService: userServices,
+     private loaderService: loadingService
+     ) { }
  ngOnInit(): void {
-   this.userService.getQuestions().subscribe((data: {questions:[]}) => {
+ this.loaderService.show()
+ setTimeout(()=>{
+  this.userService.getQuestions().subscribe((data: {questions:[]}) => {
     this.Qn = data.questions;
-    this.dataLoaded=true
-    console.log('questions',this.Qn);
-    console.log('dataloaded---',this.dataLoaded);
-    
+    this.loaderService.hide()
   });
+  
+ },3000)
+   
  
  }
  

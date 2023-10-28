@@ -6,6 +6,7 @@ import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interf
 import { usersAction } from 'src/app/featureModule/store/actions/useractions';
 import { userServices } from '../../service/userservice';
 import { userFilter } from 'src/app/coremodule/interfaces/userFilter.interface';
+import { loadingService } from 'src/app/coremodule/services/Loader/loading.service';
 
 
 @Component({
@@ -24,23 +25,18 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private store: Store<AppStateInterface>,
-    private authService: userServices
+    private authService: userServices,
+    private loaderService: loadingService
   ) {
+   
+  }
+  ngOnInit(): void {
+    this.loaderService.show()
     this.authService.users().subscribe((data:{users:[]}) => {
       this.usersDeatails = data.users;
       this.details = data.users
-      this.dataLoaded= true
+      this.loaderService.hide()
     });
-  }
-  ngOnInit(): void {
-    // this.store.dispatch(usersAction())
-
-    // this.searchControl.valueChanges.pipe(debounceTime(1000),(switchMap(val =>{
-    //   return this.authService.searchUser(val)
-    // }))).subscribe((data:)=>{
-    //   const users = data.userdetails
-    //   this.usersDeatails = users
-    // })
   }
 
   allUsers(){

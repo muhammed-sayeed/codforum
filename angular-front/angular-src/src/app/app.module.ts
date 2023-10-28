@@ -41,6 +41,7 @@ import { Reducer } from './featureModule/store/reducer';
 import { errorInterceptor } from './coremodule/interceptor/error.interceptor';
 import { TagsearchComponent } from './featureModule/user/components/tagsearch/tagsearch.component';
 import { searchTagsPipe } from './shared module/pipes/tagSearch.pipe';
+import { LoaderComponent } from './featureModule/user/components/loader/loader.component';
 
 
 
@@ -97,7 +98,8 @@ const appRoutes : Routes = [
     AddarticleComponent,
     SingleartComponent,
     TagsearchComponent,
-    searchTagsPipe
+    searchTagsPipe,
+    LoaderComponent,
    
   ],
   imports: [

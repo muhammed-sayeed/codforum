@@ -9,6 +9,7 @@ import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interf
 import { userServices } from '../../service/userservice';
 import { individualUser, singProfile, singlAnswer, singlComment, singlQuestion, tag } from 'src/app/coremodule/interfaces/individualUser.interface';
 import { currentUser } from 'src/app/coremodule/interfaces/currentUser.interface';
+import { loadingService } from 'src/app/coremodule/services/Loader/loading.service';
 
 @Component({
   selector: 'app-singleuser',
@@ -43,18 +44,17 @@ chatroom!:string
 constructor( private router:ActivatedRoute,
              private store:Store<AppStateInterface>,
              private authService:userServices,
-             private chatService:ChatServiceService
+             private chatService:ChatServiceService,
+             private loaderService: loadingService
   ){
-   
+   loaderService.show()
  authService.singleUser(this.Id).subscribe((data:individualUser)=>{
     this.details = data.profile
-   console.log('details',this.details);
    this.Qns=this.details.questions
    this.Ans = this.details.answers
    this.Art = this.details.comments
    this.mail = this.details.email
-
-   this.dataLoaded = true
+   loaderService.hide()
 })
 
 

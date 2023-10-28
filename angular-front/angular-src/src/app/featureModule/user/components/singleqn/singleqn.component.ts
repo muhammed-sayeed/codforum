@@ -12,6 +12,7 @@ import { singComment, singleQnComment } from 'src/app/coremodule/interfaces/sing
 import { commentsForsing } from 'src/app/coremodule/interfaces/singleQnComm';
 import { ansForSing } from 'src/app/coremodule/interfaces/answerForsing';
 import { successState } from 'src/app/coremodule/interfaces/success.interface';
+import { loadingService } from 'src/app/coremodule/services/Loader/loading.service';
 
 @Component({
   selector: 'app-singleqn',
@@ -49,7 +50,8 @@ export class SingleqnComponent implements AfterViewInit,OnInit {
     private router:ActivatedRoute,
     private authService:userServices,
     private socket:SocketService,
-    private Router:Router
+    private Router:Router,
+    private loaderService: loadingService
   ){
     
   }
@@ -57,31 +59,34 @@ export class SingleqnComponent implements AfterViewInit,OnInit {
   seasons: string[] = ['Rude or vulgar', 'Harassment or hate speech', 'Spam or copyright issue', 'Inappropriate listings message/category','other'];
 
   ngOnInit(): void {
-    this.authService.singleQn(this.Id).subscribe((data:singleQuestion)=>{
-     
-     this.Qn = data.qn
-      this.user=this.Qn.user
-      if(data.activity == 'upvoted'){
-        this.upvoted = true
-      }else if (data.activity == 'downvoted'){
-        this.downvoted = true
-      }
-
-    this.voteCount = (this.Qn.upvote.length)-(this.Qn.downvote.length)
-     
-    this.authService.getComment(this.Id).subscribe((data:singleQnComment)=>{
-      console.log(data);
-      this.Comments = data.comments
-      this.dataLoaded = true
-    })
-
-    this.socket.connect()
-    this.socket.comment.subscribe((data)=>{
-      this.Comments = [...this.Comments,data]
-    })
-
-      this.fetchAnswers()
-    })
+    this.loaderService.show()
+    setTimeout(() => {
+      this.authService.singleQn(this.Id).subscribe((data:singleQuestion)=>{ 
+        this.Qn = data.qn
+         this.user=this.Qn.user
+         if(data.activity == 'upvoted'){
+           this.upvoted = true
+         }else if (data.activity == 'downvoted'){
+           this.downvoted = true
+         }
+   
+       this.voteCount = (this.Qn.upvote.length)-(this.Qn.downvote.length)
+        
+       this.authService.getComment(this.Id).subscribe((data:singleQnComment)=>{
+         console.log(data);
+         this.Comments = data.comments
+         this.loaderService.hide()
+       })
+   
+       this.socket.connect()
+       this.socket.comment.subscribe((data)=>{
+         this.Comments = [...this.Comments,data]
+       })
+   
+         this.fetchAnswers()
+       })
+    }, 3000);
+   
     
     this.socket.connect()
     this.socket.answer.subscribe((data)=>{
