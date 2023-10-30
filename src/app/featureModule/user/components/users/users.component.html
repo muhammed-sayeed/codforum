@@ -2,19 +2,40 @@
     <app-loader></app-loader>
   </div>
 
-<div *ngIf="dataLoaded" style="background-color: #F5F5F5 ; min-height: 100vh;" class=" p-3">
+<div style="background-color: #F5F5F5 ; min-height: 100vh;" class=" p-3">
     <div class=" flex  bg-white rounded    md:w-full w-96" style="min-height:550px;">
         <div>
             <div class=" flex flex-col justify-start items-center md:w-72 w-fit">
-                <button (click)="allUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+                <!-- <button (click)="allUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
             All
-                </button>
-                <button (click)="normalUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+                </button> -->
+                <button (click)="allUsers()" id="join"
+                class="group rounded-2xl h-8 w-24 mt-3 bg-green-500 font-semibold text-bace text-white relative overflow-hidden">
+              All
+                <div
+                  class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                </div>
+              </button>
+                <!-- <button (click)="normalUsers()"  class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
                    Normal
-                       </button>
-                       <button (click)="moderators()" class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
+                       </button> -->
+                       <button (click)="normalUsers()" id="join"
+                class="group rounded-2xl h-8 w-24 mt-3 bg-green-500 font-semibold text-bace text-white relative overflow-hidden">
+              Normal
+                <div
+                  class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                </div>
+              </button>
+                       <!-- <button (click)="moderators()" class="w-24 h-8  border-b border-green-500  mt-2 bg-white text-green-500 font-normal hover:bg-green-700 hover:text-white">
                            Moderators
-                               </button>
+                               </button> -->
+                               <button (click)="moderators()" id="join"
+                class="group rounded-2xl h-8 mt-3 w-24 bg-green-500 font-semibold text-bace text-white relative overflow-hidden">
+              Moderators
+                <div
+                  class="absolute duration-300 inset-0 w-full h-full transition-all scale-0 group-hover:scale-100 group-hover:bg-white/30 rounded-2xl">
+                </div>
+              </button>
               </div>
         </div>
     

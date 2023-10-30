@@ -31,6 +31,7 @@ export class TagsComponent implements OnInit  {
     this.loaderService.show()
     this.userService.tagList().subscribe((data:tags)=>{
      this.tags = data.tags
+     console.log(this.tags);
      this.loaderService.hide()
     })
   }
