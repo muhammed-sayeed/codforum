@@ -71,17 +71,14 @@
   <div class=" flex  md:w-full w-fit ">
     <div class="mt-2 md:ml-2 hidden md:block flex flex-col">
       <div id="div" class=" flex flex-col  w-60 h-fit  bg-white hidden md:block">
-        <div id="div1" class="border flex justify-center border-b py-1 w-full flex-1">
+        <div *ngIf="ques.length" id="div1" class="border flex justify-center border-b py-1 w-full flex-1">
           <p class="text-base font-semibold font-sans ">{{ques.length}} Questions</p>
         </div>
-        <div id="div2" class="border flex justify-center border-b py-1  w-full flex-1">
+        <div *ngIf="answ.length" id="div2" class="border flex justify-center border-b py-1  w-full flex-1">
           <p class="text-base font-semibold font-sans ">{{answ.length}} Answers</p>
         </div>
-        <div style="border-color: #9999;" class="border w-full flex-1">
+        <div *ngIf="Art.length" style="border-color: #9999;" class="border w-full flex-1">
           <p class="text-base flex justify-center py-1 border-b  font-semibold font-sans ">{{Art.length}} Article</p>
-        </div>
-        <div class="border w-full flex-1">
-          <p class="text-base flex justify-center py-1  font-semibold font-sans "></p>
         </div>
 
       </div>
@@ -91,60 +88,6 @@
       </div>
     </div>
 <!-- ======================= -->
-    <div style="width: 750px;" class=" md:ml-16 mt-2  flex flex-col">
-      <!-- QN -->
-      <div *ngIf="showQn">
-        <div class="w-fit h-fit p-1">
-          <p class="text-base font-semibold text-slate-500">Questions</p>
-        </div>
-        <div class="md:w-5/6 h-fit  bg-white border rounded">
-          <div *ngFor="let el of ques" [routerLink]="['/singleqn',el._id]"
-            class=" border-b flex flex-col h-20 md:w-full w-fit  mouse pointer ">
-            <div class="md:w-full  h-10 overflow-hidden p-2">
-              <p class="text-black text-xl font-normal font-sans truncate ">{{el.title}}</p>
-            </div>
-            <div class=" flex items-center md:w-full  h-fit p-1">
-              <!-- <ng-container *ngFor="let el of ques.tags">
-                <div class="w-fit h-fit  border bg-sky-50">
-                  <p class="text-sm text-normal ">#{{el.names}}</p>
-                </div>
-              </ng-container> -->
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- --ANS-- -->
-      <div *ngIf="showAns">
-        <div class="w-fit h-fit p-1">
-          <p class="text-base font-semibold text-slate-500">Answers</p>
-        </div>
-        <div class="md:w-5/6 mt-2 rounded bg-white  border">
-          <div *ngFor="let el of answ" class=" border-b flex p-1 flex-col h-fit md:w-full w-fit  mouse pointer ">
-            <div class="md:w-full  h-10 overflow-hidden p-2">
-              <p class="text-black text-xl font-normal font-sans truncate " [innerHTML]="el.body"></p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <!-- --Articles-- -->
-      <div *ngIf="showArt">
-        <div class="w-fit h-fit p-1">
-          <p class="text-base font-semibold text-slate-500">Articles</p>
-        </div>
-        <div class="md:w-5/6 mt-2 rounded bg-white h-16 border">
-          <div *ngFor="let el of Art" class=" border-b flex flex-col h-20 md:w-full w-fit  mouse pointer ">
-            <div class="md:w-full  h-10 overflow-hidden p-2">
-              <p class="text-black text-xl font-normal font-sans truncate " [innerHTML]="el.body"></p>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
+    
   </div>
 </div>
