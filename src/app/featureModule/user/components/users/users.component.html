@@ -43,7 +43,7 @@
       
            <div *ngFor="let el of usersDeatails" [routerLink]="['/singleuser',el._id]" class=" flex  mt-2 ml-3 p-3  h-fit md:w-44 w-fit border-t border-b border-gray">
              <div class="w-fit h-fit">
-<img [src]="el.image ? el.image : '/assets/download.png'" class="w-8 h-8" alt="">
+<img [src]="'/assets/download.png'" class="w-8 h-8" alt="">
              </div>
              <div class="h-full flex-1 flex flex-col">
          <h4 class="text-base font-normal text-slate-500 ml-4">{{el.username}}</h4>

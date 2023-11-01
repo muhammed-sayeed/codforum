@@ -7,7 +7,7 @@
         <div class="md:w-3/4 w-fit border rounded bg-white h-fit">
           <div class=" flex md:flex-1 justify-center h-fit">
            
-              <img class="w-24 h-24 mt-2 rounded-full"[src]="details.image ? details.image : '/assets/download.png' " alt="">
+              <img class="w-24 h-24 mt-2 rounded-full"[src]="'/assets/download.png' " alt="">
              
         
           </div>
@@ -19,21 +19,7 @@
               {{details.username}}
              </p>
           </div>
-          <div class="flex justify-center item-center md:w-full w-fit h-10 ">
-            <div class="f-6 pt-1 w-6 flex justify-center item-center ">
-              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" id="Layer_1" width="15" height="15" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
-                <path fill="#94a3b8" d="M32,0C18.746,0,8,10.746,8,24c0,5.219,1.711,10.008,4.555,13.93c0.051,0.094,0.059,0.199,0.117,0.289l16,24  C29.414,63.332,30.664,64,32,64s2.586-0.668,3.328-1.781l16-24c0.059-0.09,0.066-0.195,0.117-0.289C54.289,34.008,56,29.219,56,24  C56,10.746,45.254,0,32,0z M32,32c-4.418,0-8-3.582-8-8s3.582-8,8-8s8,3.582,8,8S36.418,32,32,32z"/>
-                </svg>
-            </div>
-            <div *ngIf="place" class="f-6 w-6 flex justify-center ">
-              <p class="text-base text-slate-700 font-narmal font-sans">
-                {{details.place}}
-              </p>
-            </div>
-           
-           
-         </div>
-          <div  class="flex justify-center item-center md:w-full w-fit h-16  ">
+          <div  class="flex justify-center item-center md:w-full w-fit h-fit  ">
              <p class="text-xl text-slate-700 font-normal font-sans text-center ">
               {{details.bio}}
              </p>
@@ -43,7 +29,7 @@
           Member from {{details.createdAt | date}}
              </p>
           </div>
-          <div class="flex item-center md:w-full w-fit h-10 ">
+          <div class="flex item-center md:w-full w-fit h-fit ">
              <div *ngIf="details.education" class=" flex flex-col border-r justify-center items-center  h-full flex-1">
               <p class="text-base text-slate-400 font-normal border-b font-sans" >Education</p>
              
@@ -68,19 +54,16 @@
    <div class=" flex  md:w-full w-fit ">
     <div class="mt-2 md:ml-2 hidden md:block flex flex-col">
       <div class=" flex flex-col  w-60 h-fit border bg-white hidden md:block">
-     <div class="border flex justify-center py-1 w-full flex-1">
+     <div *ngIf="Qns.length" class="border flex justify-center py-1 w-full flex-1">
       <p class="text-base font-normal font-sans ">{{Qns.length}} Questions</p>
      </div>
-     <div class="border flex justify-center py-1  w-full flex-1">
-  <p class="text-base font-normal font-sans ">{{Ans.length}} Answers</p>
+     <div *ngIf="Ans.length" ass="border flex justify-center  w-full flex-1">
+  <p class="text-base font-normal font-sans m-2 ">{{Ans.length}} Answers</p>
      </div>
-     <div class="border w-full flex-1">
+     <div *ngIf="Art.length" lass="border w-full flex-1">
       <p class="text-base flex justify-center py-1  font-normal font-sans ">{{Art.length}} Article</p>
      </div>
     
-      </div>
-      <div class=" mt-2 w-60 h-12 border bg-white hidden md:block">
-        
       </div>
     </div>
    
