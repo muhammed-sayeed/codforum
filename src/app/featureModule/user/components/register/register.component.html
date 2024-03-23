@@ -1,97 +1,61 @@
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
-
-<section class="bg-white-50">
-  
-  <div class="w-full lg:w-4/12 px-4 mx-auto pt-6">
-    <div class="relative flex flex-col min-w-0 break-words w-full  shadow-lg rounded-lg bg-blueGray-200 border-0 ">
-      <div class="rounded-t mb-0 px-6 py-6">
-        <div class="text-center">
-          <h6 class="text-blueGray-500 text-sm font-bold mb-2">
-            Sign up with
-          </h6>
+<section class="main">
+    <div class="outer">
+        <div class="image">
+<img class="h-full" src="../../../../../assets/download (1).jpg" alt="">
         </div>
-        <div class="btn-wrapper text-center">
-         
-          <button class="bg-white active:bg-blueGray-50 text-blueGray-700 font-normal px-4 py-2 rounded outline-none focus:outline-none mr-1  uppercase shadow hover:shadow-md inline-flex items-center font-bold text-xs ease-linear transition-all duration-150" type="button">
-            <img alt="..." class="w-5 mr-1" src="https://demos.creative-tim.com/notus-js/assets/img/google.svg">Google </button>
-
+        <div class="form">
+           <div class="upper">
+            <div class="content">
+                <h1>Welcome to <span>CODFORUM</span></h1>
+                <p>Find the best answer to your technical question, help others answer theirs</p>
+            </div>
+           </div>
+           
+              <form action="" [formGroup]="registerForm" (ngSubmit)="onRgisterSubmit()">
+                <div class="lower">
+                <div class="innerform">
+                    <div class="first">
+                         <div class="one">
+                            <label for="username">username</label>
+                            <input type="text" formControlName="username" name="" id="">
+                            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                                <div *ngIf="registerForm.get('username')?.errors?.['required']" style="color: red;">username required</div>
+                                <div *ngIf="registerForm.get('username')?.errors?.['minlength']" style="color: red;">username required min length</div>
+                            </div>
+                         </div>
+                         <div class="two">
+                            <label for="email">E-mail</label>
+                            <input type="email" formControlName="email">
+                            <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+                                <div *ngIf="registerForm.get('email')?.errors?.['required']" style="color: red;">E-mail required </div>
+                                <div *ngIf="registerForm.get('email')?.errors?.['email']" style="color: red;">Invalid email</div>
+                                </div>
+                         </div>
+                    </div>
+                    <div class="second">
+                         <div class="three">
+                            <label for="phone">Phone</label>
+                            <input type="tel" formControlName="phone">
+                            <div *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+                                <div *ngIf="registerForm.get('phone')?.errors?.['required']" style="color: red;">Phone required </div>
+                                </div>
+                         </div>
+                         <div class="four">
+                            <label for="password">Password</label>
+                           <input type="text" formControlName="password" name="" id="">
+                           <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                            <div *ngIf="registerForm.get('password')?.errors?.['required']" style="color: red;">password required</div>
+                            <div *ngIf="registerForm.get('password')?.errors?.['minlength']" style="color: red;">Atleast 6 charecter required</div>
+                        </div>
+                         </div>
+                    </div>
+                  </div>
+                  <div class="submit">
+                    <button class="btn" type="submit" [disabled]="registerForm.invalid">Submit</button>
+                   </div>
+                </div>
+              </form>
+           
         </div>
-        <!-- <hr class="mt-6 border-b-1 border-blueGray-300"> -->
-      </div>
-      <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-        <div class="text-blueGray-400 text-center  font-bold">
-          <small>Or sign up with credentials</small>
-        </div>
-        <form #myForm="ngForm" (submit)=" onRgisterSubmit()" >
-          <div class="relative w-full mb-3">
-            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="grid-password">Username</label>
-            <input type="" [(ngModel)]="username" name="username" required minlength="5" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="username">
-          </div>
-          <div *ngIf="myForm.controls['username'].invalid && (myForm.controls['username'].dirty || myForm.controls['username'].touched)">
-            <div *ngIf="myForm.controls['username'].errors?.['required']">
-             <p class="text-sm font-sans text-red-600"> username is required.</p>
-            </div>
-            <div *ngIf="myForm.controls['username'].errors?.['minlength']">
-              <p class="text-sm font-sans text-red-600">  required min 5 charectere</p>
-            
-            </div>
-          </div>
-          <div class="relative w-full mb-3">
-            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="grid-password">Email</label>
-            <input type="email" [(ngModel)]="email"  name="email" required   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Email">
-             </div>
-             <div *ngIf="myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
-              <div *ngIf="myForm.controls['email'].errors?.['required']">
-               <p class="text-sm font-sans text-red-600"> email is required.</p>
-              </div>
-              <div *ngIf="myForm.controls['email'].errors?.['pattern']">
-                <p class="text-sm font-sans text-red-600">Invalid E-mail</p>
-              
-              </div>
-            </div>
-          <div class="relative w-full mb-3">
-            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="grid-password">Phone</label>
-            <input type="number" [(ngModel)]="phone" name="phone" required  class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Phone">
-          </div>
-          <div *ngIf="myForm.controls['phone'].invalid && (myForm.controls['phone'].dirty || myForm.controls['phone'].touched)">
-            <div *ngIf="myForm.controls['phone'].errors?.['required']">
-             <p class="text-sm font-sans text-red-600"> phone number is required.</p>
-            </div>
-          
-          </div>
-          <div class="relative w-full mb-3">
-            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="grid-password">Password</label>
-            <input type="password" [(ngModel)]="password" name="password" required minlength="6" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" placeholder="Password">
-          </div>
-          <div *ngIf="myForm.controls['password'].invalid && (myForm.controls['password'].dirty || myForm.controls['password'].touched)">
-            <div *ngIf="myForm.controls['password'].errors?.['required']">
-             <p class="text-sm font-sans text-red-600"> password is required.</p>
-            </div>
-            <div *ngIf="myForm.controls['password'].errors?.['minlength']">
-              <p class="text-sm font-sans text-red-600">  required min 6 charectere</p>
-            
-            </div>
-          </div>
-          <div>
-            <p class="block text-blueGray-600 text-xs font-bold mb-">Already have an account <a routerLink="/login" class="text-red-600 ml-4">Login</a></p>
-          </div>
-          <div class="text-center mt-6">
-            <button [disabled]="!myForm.valid"
-            [ngStyle]="{'cursor': !myForm.valid ? 'not-allowed' : 'pointer'}" class="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="submit" > Sign In </button>
-          </div>
-        </form>
-      </div>
     </div>
-  </div>
-  <footer class="relative pt-8 pb-6 mt-2">
-    <div class="container mx-auto px-2">
-      <div class="flex flex-wrap items-center md:justify-between justify-center">
-        <div class="w-full md:w-6/12 px-4 mx-auto text-center">
-         
-        </div>
-      </div>
-    </div>
-  </footer>
 </section>

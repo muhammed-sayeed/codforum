@@ -3,6 +3,7 @@ import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store,select } from '@ngrx/store';
 import { Observable} from 'rxjs'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
  
 import { registerAction } from 'src/app/featureModule/store/actions/register.action';
 
@@ -26,6 +27,8 @@ export class RegisterComponent implements OnInit{
 
  err:string|undefined
 
+ registerForm!: FormGroup
+
  constructor(
   private store:Store<AppStateInterface>
  ){
@@ -33,22 +36,25 @@ export class RegisterComponent implements OnInit{
 }
 
  ngOnInit(): void {
+  this.registerForm = new FormGroup({
+    username: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    email:new FormControl('',[Validators.required,Validators.email]),
+    phone:new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required, Validators.minLength(6)])
+  })
  
  }
 
 
 
  onRgisterSubmit(){
- 
+  console.log('submiting.......');
   
-   const user:registerRequestInterface = {
-    username:this.username,
-    email:this.email,
-    phone:this.phone,
-    password:this.password
-   }
-   this.store.dispatch(registerAction(user))
-
- 
+  if(this.registerForm.valid){
+    console.log('validating.......');
+    
+    const user = this.registerForm.value
+    this.store.dispatch(registerAction(user))
+  }
  }
 }
