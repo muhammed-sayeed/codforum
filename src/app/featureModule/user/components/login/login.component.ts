@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store,select} from '@ngrx/store'
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms'
 
 import { AppStateInterface } from 'src/app/coremodule/interfaces/appstate.interface';
 import { loginAction } from 'src/app/featureModule/store/actions/login.action';
@@ -25,20 +26,26 @@ export class LoginComponent implements OnInit{
   err!:string| null
   error$!:Observable<string | null>
 
+  loginForm!: FormGroup
+
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
   private store:Store<AppStateInterface>,
-  private snackBar: MatSnackBar
+  private snackBar: MatSnackBar,
+  private formBuilder: FormBuilder
   ){
     this.pageLoding$ = this.store.pipe(select(isLodingSelector))
    }
 ngOnInit(): void {
-  
+   this.loginForm =  this.formBuilder.group({
+     email:['',[Validators.required, Validators.email]],
+     password:['',[Validators.required, Validators.minLength(6)]]
+   })
 }
 
-  onLoginSubmit(){
+  onLoginSubmit(data: NgForm){
     const user ={
       email:this.email,
       password:this.password
