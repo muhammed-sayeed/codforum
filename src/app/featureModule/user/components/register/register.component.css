@@ -121,6 +121,13 @@ input{
     animation: fade-in 4s linear forwards;
     
   }
+
+  .change{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+ }
   
 .notification_progress {
     position: absolute;

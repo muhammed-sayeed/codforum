@@ -55,8 +55,14 @@ form{
     display: flex;
     flex-direction: column;
 }
+.change{
+   height: 10%;
+   display: flex;
+   justify-content: center;
+   align-items: end;
+}
 .innerform{
-    height: 70%;
+    height: 60%;
 }
 .submit{
    height: 30%; 
